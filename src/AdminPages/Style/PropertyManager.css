@@ -1,0 +1,132 @@
+/* Container Layout */
+.property-manager-container {
+  padding: 30px;
+  background-color: #fffaf0;
+  min-height: 100vh;
+}
+
+.manager-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Card Styling */
+.form-card, .list-card {
+  background: #ffffff;
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(128, 0, 0, 0.05);
+}
+
+.card-header {
+  border-bottom: 2px solid #800000;
+  margin-bottom: 20px;
+  color: #800000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Form Elements */
+.f-field {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.f-field label {
+  font-weight: bold;
+  color: #5d4037;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.f-row {
+  display: flex;
+  gap: 15px;
+}
+
+.f-row .f-field { flex: 1; }
+
+.temple-form input, .temple-form select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fffdfa;
+}
+
+/* Upload Area */
+.upload-zone {
+  border: 2px dashed #d4af37;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  background: #fdfaf5;
+  cursor: pointer;
+  margin: 15px 0;
+  transition: 0.3s;
+}
+
+.upload-zone:hover {
+  background: #fff8e1;
+  border-color: #800000;
+}
+
+.upload-zone input { display: none; }
+
+.file-count {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+/* List/Strip Styling */
+.property-grid {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.prop-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border-left: 5px solid #800000;
+}
+
+.prop-main strong { color: #800000; display: block; }
+.prop-main span { font-size: 0.85rem; color: #666; }
+
+.edit-btn {
+  background: #ff9933;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn {
+  width: 100%;
+  background: #800000;
+  color: #d4af37;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+@media (max-width: 1024px) {
+  .manager-layout { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,252 @@
+/* --- Root Variables for Temple Theme --- */
+:root {
+  --temple-maroon: #800000;
+  --temple-gold: #f5e6c8;
+  --gold-accent: #d4af37;
+  --glass-bg: rgba(245, 230, 200, 0.804);
+  --deep-bg: #1a0000;
+}
+
+/* --- Layout Containers --- */
+.detail-wrapper {
+  padding: 2rem;
+  background-color:#f5e6c8;
+  min-height: 100vh;
+  color: var(--temple-gold);
+}
+
+.branch-view-layout {
+  display: grid;
+  grid-template-columns: 450px 1fr; /* Larger sidebar for the big slider */
+  gap: 40px;
+  width: 95%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* --- Majestic Slider Styling --- */
+.big-slider {
+  position: relative;
+  height: 400px;
+  /* background: #daa336; */
+  border: 2px solid var(--gold-accent);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.big-slider img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.slider-nav-btns {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.slide-btn {
+  background: rgba(128, 0, 0, 0.7);
+  color: var(--temple-gold);
+  border: 1px solid var(--gold-accent);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.slide-btn:hover {
+  background: var(--gold-accent);
+  color: var(--deep-bg);
+}
+
+.image-counter {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid var(--gold-accent);
+}
+
+/* --- Thumbnail Strip --- */
+.thumbnail-strip {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.thumb-container {
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.active-thumb {
+  border: 2px solid var(--gold-accent);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.thumb-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Form & Glass Card --- */
+.glass-card {
+  background-color:#f5f5f5;;
+  /* backdrop-filter: blur(10px); */
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 15px;
+  padding: 2.5rem;
+}
+
+.card-header-row h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--temple-maroon);
+  font-size: 35px;
+  margin: 0;
+}
+
+
+
+
+
+
+.form-section h3 {
+  color:black;
+  border-left: 4px solid var(--gold-accent);
+  padding-left: 15px;
+  font-size: 1.1rem;
+  margin: 2rem 0 1.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Inputs --- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field label {
+  color: var(--gold-accent);
+  font-size: 15px;
+  margin-bottom: 2px;
+  display: block;
+  font-weight: 600;
+}
+
+.wide-form input, textarea {
+  width: 100%;
+  font-size: 20px;
+  /* background: rgba(0, 0, 0, 0.3); */
+  border: 2px solid rgba(245, 230, 200, 0.2);
+  padding-left: 20px;
+  border-radius: 6px;
+  /* outline:auto;
+  outline-color:rgba(31, 21, 1, 0.2); */
+  padding: 12px;
+  color: color;
+  transition: 0.3s;
+  
+}
+
+input:focus, textarea:focus {
+  border-color: var(--gold-accent);
+  outline: none;
+  /* background: rgba(0, 0, 0, 0.5); */
+}
+
+input[readOnly], textarea[readOnly] {
+  border-color: transparent;
+  background: transparent;
+  padding-left: 0;
+  cursor: default;
+}
+
+/* --- Buttons --- */
+.edit-btn, .save-btn {
+  background: var(--gold-accent);
+  color: var(--deep-bg);
+  border: none;
+
+  padding: 10px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.delete-img-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: var(--temple-maroon);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.add-photo-placeholder {
+  width: 70px;
+  height: 70px;
+  border: 2px dashed var(--gold-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+  color: var(--gold-accent);
+  border-radius: 6px;
+}
+
+/* --- Animation --- */
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Responsive --- */
+@media (max-width: 1100px) {
+  .branch-view-layout {
+    grid-template-columns: 1fr;
+  }
+  .big-slider {
+    height: 350px;
+  }
+}

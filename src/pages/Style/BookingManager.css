@@ -1,0 +1,223 @@
+/* Main Wrapper */
+.booking-manager-wrapper {
+  padding: 30px;
+  background-color: #fffdfa;
+  min-height: 100vh;
+  margin-top: 80px;
+}
+
+/* Header Section */
+.manager-header {
+  border-bottom: 3px double #d4af37;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.title-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #800000;
+  margin-bottom: 20px;
+}
+
+/* Filter Bar - Responsive Flex */
+.filter-bar {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Allows stacking on mid-size screens */
+}
+
+.search-box, .date-filter {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #d4af37;
+  padding: 8px 15px;
+  border-radius: 5px;
+  gap: 10px;
+  min-width: 250px;
+}
+
+.search-box input, .date-filter input {
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+/* TABLE RESPONSIVENESS (The simple horizontal scroll way) */
+.booking-table-container {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal swipe on mobile */
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  -webkit-overflow-scrolling: touch;
+}
+
+.temple-admin-table {
+  width: 100%;
+  min-width: 900px; /* Prevents columns from squishing */
+  border-collapse: collapse;
+}
+
+.temple-admin-table th {
+  background: #800000;
+  color: #fff;
+  padding: 15px;
+  text-align: left;
+  white-space: nowrap; /* Keeps headers on one line */
+}
+
+.temple-admin-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+/* Table Content Styling */
+.main-text { font-weight: bold; color: #2c3e50; }
+.sub-text { font-size: 0.85rem; color: #7f8c8d; }
+.date-highlight { color: #800000; font-weight: bold; }
+
+.category-tag {
+  font-size: 0.75rem;
+  background: #fff8e1;
+  color: #ff9933;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.pay-pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: inline-block;
+}
+.pay-pill.cash { background: #e8f5e9; color: #2e7d32; }
+.pay-pill.upi { background: #e3f2fd; color: #1565c0; }
+
+.edit-btn-circle {
+  background: #fdfaf5;
+  border: 1px solid #d4af37;
+  color: #800000;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn-circle:hover { background: #800000; color: gold; }
+
+/* MODAL - Responsive Widths */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 2000;
+  padding: 20px; /* Padding for mobile edges */
+}
+
+.temple-modal {
+  background: white;
+  width: 100%;
+  max-width: 450px; /* Desktop width */
+  border-radius: 10px;
+  border-top: 8px solid #800000;
+  padding: 25px;
+  max-height: 90vh;
+  overflow-y: auto; /* Scrollable if form is tall */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.close-icon { cursor: pointer; font-size: 1.2rem; color: #777; }
+
+/* Form Elements */
+.form-field { margin-bottom: 20px; display: flex; flex-direction: column; gap: 5px; }
+.form-field label { font-weight: bold; color: #5d4037; font-size: 0.9rem; }
+.form-field input, .form-field select { 
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 4px; 
+  font-size: 1rem; /* Better for mobile touch */
+}
+
+.save-btn {
+  width: 100%;
+  background: #800000;
+  color: gold;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MEDIA QUERIES FOR MOBILE */
+@media screen and (max-width: 768px) {
+  .booking-manager-wrapper {
+    /* padding: 15px; */
+    margin-top: 70px;
+  }
+
+  .filter-bar {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .search-box, .date-filter {
+    min-width: unset;
+    width: 100%;
+    /* margin-right:50px; */
+  }
+
+  .title-area h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .booking-manager-wrapper {
+    /* padding: 15px; */
+    margin-top: 70px;
+  }
+
+  .filter-bar {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .search-box, .date-filter {
+    min-width: unset;
+    width: 100%;
+    /* margin-right:50px; */
+  }
+
+  .title-area h1 {
+    font-size: 1.4rem;
+  }
+  .temple-modal{
+
+  width:200px;
+  margin-right:45px;
+  margin-bottom:10px;
+  max-height: 400px;
+
+
+}
+}
+

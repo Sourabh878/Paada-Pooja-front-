@@ -1,0 +1,226 @@
+/* ==========================================================================
+   1. BASE NAVBAR (The "Corner-to-Corner" Logic)
+   ========================================================================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  /* Pushes logo to far left, logout-item to far right */
+  justify-content: space-between; 
+  background: linear-gradient(135deg, #FF9933, #FF6600); 
+  border-bottom: 3px solid #FFD700;
+  padding: 0 40px; /* Side padding controls how far into the corners they sit */
+  height: 70px; /* Fixed height for consistent vertical alignment */
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.navbar.admin {
+  background: linear-gradient(135deg, #E65100, #BF360C);
+}
+
+/* --- Left Corner: Logo --- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  min-width: 150px; /* Prevents center links from squeezing logo */
+}
+
+.nav-logo img { 
+  width: 45px; 
+  height: 45px; 
+  border-radius: 50%; 
+  border: 2px solid #FFD700; 
+}
+
+/* --- Right Corner: Logout --- */
+.logout-item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 150px; /* Matches logo for perfect center alignment of links */
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #FFD700, #FFC107);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  color: #4E342E;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ==========================================================================
+   2. CENTER NAVIGATION (The Middle Section)
+   ========================================================================== */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  flex: 1; /* Occupies all available space in the middle */
+  justify-content: center; /* Centers the links inside that middle space */
+}
+
+.nav-item { position: relative; }
+
+.nav-link-trigger, .nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover, .nav-link-trigger:hover {
+  background: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+  border-radius: 6px;
+}
+
+/* --- Desktop Dropdowns --- */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: white;
+  min-width: 190px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  border-top: 4px solid #FFD700;
+  padding: 8px 0;
+}
+
+@media (min-width: 1025px) {
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.dropdown-menu li a {
+  color: #BF360C !important;
+  /* width: 100%; */
+  padding: 12px 20px;
+}
+
+.dropdown-menu li a:hover {
+  background: #FFF3E0;
+  width:auto;
+}
+
+.arrow { font-size: 0.7rem; transition: 0.3s; }
+.arrow.up { transform: rotate(180deg); }
+
+/* ==========================================================================
+   3. MOBILE LAYOUT (Responsive Sidebar)
+   ========================================================================== */
+.hamburger { 
+  display: none; 
+  color: white; 
+  font-size: 1.8rem; 
+  cursor: pointer; 
+}
+
+@media (max-width: 1024px) {
+  .navbar { padding: 0 20px; }
+
+  .hamburger { 
+    display: block; 
+    order: 3; /* Forces hamburger to the far right */
+  }
+
+  /* Desktop logout button hidden in mobile header, moved to drawer */
+  .logout-item.desktop-only { display: none; }
+
+  .nav-links {
+    position: absolute;
+    top: 70px; 
+    left: 0;
+    width: 280px; /* Sidebar style */
+    background: #BF360C;
+    flex-direction: column;
+    align-items: flex-start;
+    display: none; 
+    border-bottom: 5px solid #FFD700;
+    flex: none; /* Disables the desktop centering flex */
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+  }
+
+  .nav-links.active {
+    display: flex;
+    max-height: calc(100vh - 30px);
+    overflow-y: auto;
+    width:100%;
+  }
+
+  .nav-item, .nav-links li { 
+    width: 100%; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link-trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 15px 25px;
+  }
+
+  /* Mobile Dropdown resets */
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    display: none; 
+    background: rgba(0, 0, 0, 0.15);
+    box-shadow: none;
+    width: 100%;
+    border-top: none;
+  }
+
+  .dropdown-menu.show { display: block !important; }
+
+  .dropdown-menu li a { 
+    color: #FFD700 !important;
+    padding: 12px 0 12px 55px; 
+  }
+
+  .logout-item { 
+    width: 100%; 
+    padding: 20px; 
+    display: block; /* Shows inside the sidebar */
+  }
+  
+  .logout-btn { 
+    width: 100%; 
+    justify-content: center; 
+  }
+}

@@ -1,0 +1,161 @@
+.temple-footer {
+  background: linear-gradient(to bottom, #FF6600, #BF360C); /* Deep Saffron Gradient */
+  color: #FFFFFF;
+  padding: 60px 0 20px 0;
+  position: relative;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.footer-col h3 {
+  color: #FFD700; /* Gold */
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Gold underline for headings */
+.footer-col h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #FFD700;
+}
+
+.footer-logo {
+  color: #FFD700;
+  margin-bottom: 15px;
+}
+
+.footer-col p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.footer-col ul li a:hover {
+  color: #FFD700;
+  transform: translateX(5px); /* Interactive movement */
+}
+
+/* Social Media Icons */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-links a {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  background: #FFD700;
+  color: #BF360C;
+  transform: translateY(-5px);
+}
+
+/* Timings styling */
+.special-note {
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  color: #FFD700;
+}
+
+/* Footer Bottom Area */
+.footer-bottom {
+  margin-top: 50px;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+  text-align: center;
+  font-size: 0.85rem;
+  position: relative;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: absolute;
+  right: 30px;
+  top: -25px;
+  background: #FFD700;
+  color: #BF360C;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.back-to-top:hover {
+  background: #FFFFFF;
+  transform: translateY(-5px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-col h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .back-to-top {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .back-to-top:hover {
+    transform: translateX(50%) translateY(-5px);
+  }
+}

@@ -1,0 +1,183 @@
+/* Unique wrapper to prevent global style leakage */
+.temple-branch-master-container {
+    background: #f5e6c8; /* Warm temple cream */
+    min-height: 100vh;
+    /* padding:20px; */
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    margin-top:80px;
+}
+
+.temple-branch-master-container .header-nav {
+    max-width: 900px;
+    margin: 0 auto 20px;
+}
+
+.temple-branch-master-container .back-link {
+    background: none;
+    border: 1px solid #800000;
+    color: #800000;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.temple-branch-master-container .back-link:hover {
+    background: #800000;
+    color: #ffd700;
+}
+
+/* Glass Card with Temple Borders */
+.temple-branch-master-container .glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(128, 0, 0, 0.1);
+    border: 1px solid #800000; /* Deep Maroon header line */
+    /* width:900px; */
+    margin-left:50px; 
+    margin-right:50px;
+}
+
+
+.temple-branch-master-container .card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px double #d4af37;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.temple-branch-master-container .card-header-row h2 {
+    color: #800000;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    letter-spacing: 1px;
+}
+
+/* Save Button Styling */
+.temple-branch-master-container .save-btn {
+    background: #800000;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    /* padding: 10px 25px; */
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items:center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.temple-branch-master-container .save-btn:hover:not(:disabled) {
+    background: #a52a2a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(128, 0, 0, 0.2);
+}
+
+.temple-branch-master-container .save-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    border-color: #999;
+}
+
+/* Form Sections */
+.temple-branch-master-container .form-section {
+    margin-bottom: 35px;
+}
+
+.temple-branch-master-container .form-section h3 {
+    color: #b22222;
+    font-size: 1.1rem;
+    border-left: 4px solid #ffd700;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Grid Layouts */
+.temple-branch-master-container .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.temple-branch-master-container .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.temple-branch-master-container label {
+    font-weight: 600;
+    color: #5d4037;
+    font-size: 0.9rem;
+}
+
+/* Inputs & Textareas */
+.temple-branch-master-container input, 
+.temple-branch-master-container textarea {
+    padding: 12px;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    background: #fffdfa;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.temple-branch-master-container input:focus, 
+.temple-branch-master-container textarea:focus {
+    outline: none;
+    border-color: #800000;
+    box-shadow: 0 0 5px rgba(128, 0, 0, 0.1);
+}
+
+/* Photo Upload Zone */
+.temple-branch-master-container .upload-box {
+    border: 2px dashed #d4af37;
+    background: #fff8e1;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.temple-branch-master-container .upload-box:hover {
+    border-color: #800000;
+    background: #ffecb3;
+}
+
+.temple-branch-master-container .upload-box p {
+    margin-top: 10px;
+    color: #800000;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+   .temple-branch-master-container .grid-2 {
+    grid-template-columns: 1fr;
+
+}
+
+    
+    .temple-branch-master-container .card-header-row {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .temple-branch-master-container .glass-card {
+        padding: 20px;
+        margin:10px;
+    }
+}

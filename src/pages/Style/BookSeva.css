@@ -1,0 +1,723 @@
+.book-seva-page {
+  /* background-color: #fffaf0; */
+  min-height: 100vh;
+  padding: 20px;
+  /* margin-top:80px; */
+}
+
+.om-header-icon { font-size: 2.5rem; color: #ff9933; margin-bottom: 5px; }
+.page-header {display:flex; align-items: center; gap:20px; border-bottom:double #d4af37; margin-bottom: 30px; }
+.page-header h1 { color: #800000; font-family: 'Georgia', serif; }
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+
+.booking-card {
+  background: white;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom:20px;
+}
+
+.booking-card h3 {
+  color: #800000;
+  border-bottom: 1px solid #f0e68c;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 5px;
+  gap: 10px;
+}
+
+.search-input-wrapper input { border: none; outline: none; width: 100%; }
+
+.devotee-results, .seva-list {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 15px;
+  border: 1px solid #f1f1f1;
+}
+
+.devotee-row, .seva-option {
+  padding: 10px;
+  border-bottom: 1px solid #f9f9f9;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.2s;
+}
+
+.devotee-row:hover, .seva-option:hover { background: #fff8e1; }
+.devotee-row.active, .seva-option.active { background: #ff9933; color: white; }
+
+.price-tag { font-weight: bold; color: #800000; }
+.seva-option.active .price-tag { color: white; }
+
+.summary-box { background: #fdfaf5; padding: 15px; border-radius: 5px; margin-bottom: 20px;margin-top:20px }
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
+.summary-total {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px solid #800000;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.amount { color: #800000; font-size: 25px; }
+
+.book-btn {
+  width: 100%;
+  padding: 15px;
+  background: #800000;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.book-btn:disabled { background: #ccc; cursor: not-allowed; border: none; color: #666; }
+
+/* Receipt Overlay */
+.receipt-overlay {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  display:flex; justify-content: center; align-items: center;
+}
+
+.receipt-box { background: white; padding: 40px; width: 400px; text-align: center;
+
+max-height: 500px;
+overflow-y:auto;}
+
+
+/* --- Receipt Modal Overlay --- */
+.receipt-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(44, 18, 1, 0.85); /* Deep maroon tint */
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  padding: 20px;
+}
+
+/* --- The Receipt Paper --- */
+.receipt-box {
+  background: #fff;
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+  border: 15px solid transparent;
+  border-image: url("https://www.transparenttextures.com/patterns/gold-scale.png") 30 stretch; /* Gold texture border */
+  outline: 2px solid #d4af37;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"); /* Paper texture */
+}
+
+/* --- Watermark Effect --- */
+.receipt-box::before {
+  content: 'ॐ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
+  color: rgba(255, 153, 51, 0.05); /* Very faint Saffron Om */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.receipt-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Receipt Header --- */
+.temple-receipt-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.temple-receipt-header svg {
+  font-size: 2.5rem;
+  color: #ff9933;
+  margin-bottom: 10px;
+}
+
+.temple-receipt-header h2 {
+  color: #800000;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.temple-receipt-header p {
+  font-size: 0.9rem;
+  color: #5d4037;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* --- Receipt Body --- */
+.receipt-content p {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  font-size: 1rem;
+  color: #333;
+  border-bottom: 1px dotted #e0e0e0;
+  padding-bottom: 5px;
+}
+
+.receipt-content strong {
+  color: #800000;
+}
+
+.total-line {
+  margin-top: 25px;
+  padding: 15px;
+  background: #fff8e1;
+  border: 2px double #800000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #800000;
+}
+
+.total-line span {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+/* --- Buttons (Hidden during Print) --- */
+.receipt-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.print-btn {
+  flex: 2;
+  background: #800000;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  padding: 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.close-btn {
+  flex: 1;
+  background: #f4f4f4;
+  color: #666;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Table Input Styling */
+.grid-input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #d4af37;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.grid-input[readonly] {
+    background-color: #f9f9f9;
+    border-color: #eee;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.summary-grid th {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #800000;
+    padding-bottom: 10px;
+}
+
+.summary-grid td {
+    padding: 8px 2px;
+    /* font-size: 30px; */
+}
+
+/* Receipt Table Adjustments */
+.receipt-table {
+    width: 100%;
+    margin: 15px 0;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.receipt-table th {
+    border-bottom: 2px solid #800000;
+    text-align: left;
+    padding: 20px;
+    
+}
+
+.receipt-table td {
+    padding: 8px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.grid-input-date {
+    padding: 4px;
+    border: 1px solid #d4af37;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 125px;
+    /* margin-right:15px; */
+}
+
+.grid-input-small {
+    width:50px;
+    /* padding: 4px; */
+    border: 1px solid #d4af37;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    align-items: center;
+    /* display:flex; */
+    justify-content: center;
+}
+
+/* .summary-grid th {
+    font-size: 20px;
+    padding-bottom: 8px;
+    color: #800000;
+} */
+
+.summary-grid td {
+    padding: 10px 4px;
+    vertical-align: middle;
+}
+
+.selected-confirmation{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-family:Calibri;
+  font-size: 20px;
+  
+}
+.selected-confirmation .sub-text{
+  font-size: 17px;
+}
+
+.seva-section ,.summary-section{
+  font-family:  Calibri;
+}
+
+/* Align everything in the receipt table to the left */
+.receipt-table th, 
+.receipt-table td {
+    text-align: left !important;
+    padding: 8px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Optional: If you want the Amount/Total to stay on the right for better readability */
+.receipt-table th:last-child, 
+.receipt-table td:last-child {
+    text-align: right !important;
+}
+
+/* Ensure the total line at the bottom also looks clean */
+.total-line {
+    display: flex;
+    justify-content: space-between; /* Keeps label left and amount right */
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #fff8e1;
+    border: 1px solid #d4af37;
+}
+
+
+/* Table Layout for Full Width */
+.wide-table {
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.summary-grid {
+    width: 100%;
+    table-layout: fixed; /* Allows precise control over column widths */
+}
+
+/* Specific Column Widths */
+.col-name-1 {
+    width: 200px; /* Adjust this value to your preferred width */
+  max-width: 200px;
+  min-width: 150px; 
+    text-align: left !important;
+}
+
+.seva-name-display-1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+    /* word-wrap: break-word;  */
+    white-space: nowrap;
+    width:100%;
+    overflow-y: auto;
+}
+
+.summary-grid th, .summary-grid td {
+    padding: 12px 4px;
+}
+.date-input{
+
+  width:120px;
+  font-size:20px;
+  /* margin-right:10px; */
+}
+
+.total-cell{
+    font-weight: 700;
+    color: #800000;
+    font-size: 18px;
+}
+
+.amount-words{
+  font-size:20px;
+  font-family:Calibri;
+  color:#800000;
+  font-weight:bold;
+}
+
+/* Cheque Info Styling */
+.cheque-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background: #fff8e1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #d4af37;
+    margin-top: 15px;
+    margin-bottom:10px;
+}
+.cheque-inputs label{
+  display:flex;
+  align-items: center;
+  gap:4px;
+  font-size: 20px;
+}
+
+.cheque{
+  width:18px;
+}
+
+.check-detail-receipt {
+    font-size: 0.85rem;
+    color: #5d4037;
+    background: #fdf5e6;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Grid Layout Fix */
+.full-width-grid {
+    grid-template-columns: 400px 1fr !important; /* Step 2 fixed, Step 3 grows */
+}
+
+
+.payment-select{
+  margin-bottom:10px;
+  margin-top:10px;
+}
+
+/* Container for horizontal scroll on mobile */
+
+
+.summary-grid {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures column widths stay consistent */
+}
+
+/* Base Header Styling */
+.summary-grid th {
+    background-color: #fdfaf5;
+    color: #800000;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 12px 10px;
+    border-bottom: 2px solid #d4af37;
+    text-align: center; /* Default header alignment */
+}
+
+/* Base Cell Styling */
+.summary-grid td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle; /* Aligns content to the middle vertically */
+    text-align: center;     /* Default cell alignment */
+}
+
+/* Specific Column Alignment */
+
+/* 1. Seva Name: Left Aligned */
+.summary-grid th:first-child,
+.summary-grid td:first-child {
+    text-align: left;
+    width: 35%; /* Gives more space to the name */
+}
+
+/* 2. Amount Column: Right Aligned (standard for money) */
+.summary-grid th:nth-last-child(2),
+.summary-grid td:nth-last-child(2) {
+    text-align: right;
+    padding-right: 20px;
+    font-family: 'Courier New', monospace; /* Optional: cleaner for numbers */
+}
+
+/* 3. Action (Trash) Column: Narrow */
+.summary-grid th:last-child,
+.summary-grid td:last-child {
+    width: 50px;
+}
+
+/* Aligning the Inputs within cells */
+.grid-input-date, 
+.grid-input-small {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+
+.summary-grid-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    background: white;
+}
+@media print {
+  /* 1. Hide everything on the screen by default */
+
+
+  /* 2. Un-hide the receipt container and ALL its children */
+  /* This 'pierces' through the hidden parents without showing the background page */
+  .receipt-overlay,
+  .receipt-overlay *,
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+
+  /* 3. Position the receipt at the very top of the physical paper */
+  .receipt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white !important;
+    display: block !important;
+    /* padding:100px; */
+  }
+
+  .receipt-box {
+    position: absolute;
+    font-family:Calibri;
+    top: 0;
+    left: 0;
+    right:0;
+    /* width: 90%; */
+    max-width: 85%; /* Use full width of paper */
+    box-shadow: none !important;
+    border: 1px solid #d4af37 !important; /* Keep the temple theme border */
+    margin-right:20px;
+    padding: 20px;
+
+  }
+
+  /* 4. Strictly remove the buttons and UI icons from the paper */
+  .no-print, 
+  .receipt-buttons, 
+  .close-btn, 
+  .print-btn {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* 5. Style the total line specifically for black/white or color printers */
+  .total-line {
+    border: 2px solid #800000 !important;
+    background: #fff8e1 !important;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+/* --- PRINT ENGINE FIXES --- */
+@media print {
+  /* 1. Hide every single thing on the page by default */
+  body * {
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 2. Show the receipt overlay, the box, and all its children */
+  .receipt-overlay,
+  .receipt-box,
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+
+  /* 3. Position the receipt box at the very top-left of the physical paper */
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid #d4af37; /* Clean border for paper */
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  /* 4. Strictly hide the buttons so they don't appear on the PDF/Paper */
+  .receipt-buttons, 
+  .no-print,
+  .close-btn,
+  .print-btn {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* 5. Force the browser to render your theme colors and the Om watermark */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
+@media screen and (max-width:1024px) {
+
+
+  .selected-confirmation{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  align-items:flex-start;
+  font-family:Calibri;
+  font-size: 20px;
+  
+}
+
+ .full-width-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+  .booking-grid{
+
+    grid-template-columns: 1fr;
+  }
+  .receipt-overlay{
+    
+    overflow-y:scroll;
+  }
+  .receipt-box{
+    padding:2px;
+    margin-right:50px;
+    /* margin-top:50px; */
+    max-height: 400px;
+    margin-left:10px;
+    margin-bottom:20px;
+    overflow-y: scroll;
+
+
+  }
+  
+  .temple-receipt-header h2{
+    font-size:20px;
+
+  }
+
+  .temple-receipt-header p , svg{
+    font-size:10px;
+    height:30px;
+    
+
+  }
+  .temple-receipt-header p, hr{
+    margin-bottom: 0px;
+    margin-top:0xp;
+  }
+  .receipt-content p{
+
+    font-size: 12px;
+    
+  }
+  .receipt-content th, td{
+    font-size: 14px;
+  }
+  .total-line{
+    font-size:14px;
+    margin-top:3px;
+  }
+
+  .receipt-buttons .close-btn, .print-btn{
+    font-size: 14px;
+    padding:0;
+  }
+  .receipt-buttons{
+    margin-top:10px;
+  }
+  
+}
+
+@media screen and (max-width:320px) {
+
+  .booking-grid{
+
+    grid-template-columns: 1fr;
+  }
+  .receipt-overlay{
+    width:320px;
+    /* height:300px; */
+    overflow-y:scroll;
+    /* overflow-x: scroll; */
+
+  }
+}

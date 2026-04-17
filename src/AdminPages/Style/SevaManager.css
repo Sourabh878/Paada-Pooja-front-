@@ -1,0 +1,192 @@
+/* Container Logic */
+.seva-manager-container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Flex Stack for Side-by-Side Desktop View */
+.responsive-content-stack {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows wrapping on medium screens */
+}
+
+/* Section Widths */
+.seva-form-section {
+    flex: 0 0 420px; /* Fixed width for the form on large desktop */
+    position: sticky;
+    top: 90px; /* Adjusted for your navbar height */
+    z-index: 5;
+}
+
+.list-section {
+    flex: 1;
+    min-width: 0; /* Prevents table from breaking flex layout */
+}
+
+/* Card Styling */
+.management-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #fff3e0;
+}
+
+.card-top h2 {
+    font-size: 1.25rem;
+    color: #800000;
+    margin: 0;
+    font-family: 'Georgia', serif;
+}
+
+/* Form Styling - REMOVED FIXED WIDTHS */
+.seva-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%; /* Ensure field takes full container width */
+}
+
+.input-field label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #5d4037;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Unified Input Styling */
+.input-field input, 
+.input-field select, 
+.input-field textarea {
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: 0.3s;
+    background-color: #fffdfb;
+    width: 100%; /* FLUID WIDTH - FIXED THE 50px ISSUE */
+    box-sizing: border-box;
+}
+
+.input-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.input-field input:focus {
+    outline: none;
+    border-color: #ff6600;
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+}
+
+/* Flex row for Price/Priest inputs */
+.input-row-flex {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.input-row-flex .input-field {
+    flex: 1; /* Both inputs take equal space */
+}
+
+/* Price Highlight Area */
+.price-summary {
+    background: #fff8e1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px dashed #ffd54f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tprice-readonly {
+    font-weight: 800;
+    color: #bf360c;
+    font-size: 1.3rem;
+}
+
+/* Buttons */
+.submit-seva-btn {
+    background: linear-gradient(135deg, #ff9933, #ff6600);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.submit-seva-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+}
+
+/* Table Design */
+.scrollable-table-box {
+    width: 100%;
+    overflow-x: auto;
+    background: white;
+    border-radius: 8px;
+}
+
+.admin-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    .responsive-content-stack {
+        flex-direction: column;
+    }
+    
+    .seva-form-section {
+        flex: 1 1 100%;
+        max-width: 100%;
+        position: static; /* Remove sticky on mobile for better scrolling */
+    }
+}
+
+@media (max-width: 600px) {
+    .input-row-flex {
+        flex-direction: column; /* Stack price inputs on mobile */
+        gap: 15px;
+    }
+    
+    .price-summary {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .management-card {
+        padding: 15px;
+    }
+}

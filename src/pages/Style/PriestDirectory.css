@@ -1,0 +1,147 @@
+.directory-container {
+  padding: 20px 20px;
+  /* background-color: #fdfaf5; */
+  min-height: 100vh;
+  
+}
+
+.directory-header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 3px double #d4af37;
+  padding-bottom: 20px;
+  margin-top:80px;
+}
+
+.title-section h1 {
+  color: #800000;
+  margin: 10px 0 5px;
+  font-family: 'Georgia', serif;
+}
+
+.search-wrapper {
+  background: white;
+  border: 1px solid #d4af37;
+  padding: 10px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.search-wrapper input {
+  border: none;
+  outline: none;
+  margin-left: 10px;
+  width: 100%;
+}
+
+/* Priest Grid */
+.priest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Profile Card */
+.profile-card {
+  background: white;
+  border-radius: 15px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(128, 0, 0, 0.1);
+}
+
+.profile-top {
+  background: linear-gradient(to right, #800000, #b22222);
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
+}
+
+.image-container img, .avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #d4af37;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  background: #ff9933;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.name-info h2 { font-size: 1.2rem; margin: 0; }
+.kannada-name { font-size: 0.9rem; opacity: 0.9; margin: 3px 0; }
+.gotra-tag {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.profile-body { padding: 20px; }
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.info-item svg { color: #ff9933; margin-top: 4px; }
+.edu-stack { display: flex; flex-direction: column; }
+.edu-stack small { color: #888; }
+
+.divider { height: 1px; background: #eee; margin: 15px 0; }
+
+.profile-footer {
+  background: #fff8f0;
+  padding: 15px 20px;
+  border-top: 1px solid #f0e68c;
+}
+
+.address-box small { color: #800000; font-weight: bold; }
+.address-box p { font-size: 0.85rem; margin: 5px 0 0; color: #666; }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .directory-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .search-wrapper { width: auto; margin-top: 20px; }
+  .profile-card{
+    width:auto;
+  }
+}
+
+@media (max-width: 360px) {
+  
+  .search-wrapper { width: auto; margin-top: 20px; }
+  .profile-card{
+    width:270px;
+
+  }
+}

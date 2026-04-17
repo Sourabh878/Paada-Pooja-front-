@@ -1,0 +1,130 @@
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+}
+
+/* 1. The Strip below Navbar */
+.dashboard-control-strip {
+  background: #2c3e50;
+  border-bottom: 3px solid #f39c12; /* Temple Gold */
+  margin-top: 70px; /* Aligns below your fixed Navbar */
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.strip-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Tab Navigation Menu */
+.tab-nav-menu {
+  display: flex;
+  gap: 5px;
+}
+
+.tab-nav-menu button {
+  background: none;
+  border: none;
+  color: #bdc3c7;
+  padding: 15px 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 4px solid transparent;
+}
+
+.tab-nav-menu button:hover {
+  color: white;
+  background: rgba(255,255,255,0.05);
+}
+
+.tab-nav-menu button.active {
+  color: #f39c12;
+  background: #1a252f;
+  border-bottom: 4px solid #f39c12;
+}
+
+/* Hamburger toggle hidden on desktop */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  padding: 15px 0;
+  font-size: 1.1rem;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* 2. Content Area */
+.dashboard-content {
+  flex: 1;
+  /* padding: 30px 20px; */
+}
+
+.content-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .tab-nav-menu button {
+        padding: 15px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .tab-nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #2c3e50;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+    }
+
+    .tab-nav-menu.open {
+        max-height: 400px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .tab-nav-menu button {
+        width: 100%;
+        padding: 15px 25px;
+        border-bottom: none;
+        border-left: 4px solid transparent;
+    }
+
+    .tab-nav-menu button.active {
+        border-bottom: none;
+        border-left: 4px solid #f39c12;
+    }
+}

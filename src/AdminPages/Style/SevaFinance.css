@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Seva Finance - Responsive Styling
+   ========================================================================== */
+
+.finance-summary-page {
+    padding: 20px; /* Reduced padding for mobile */
+    background-color: #fffaf0; 
+    min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+    .finance-summary-page {
+        padding: 30px;
+    }
+}
+
+.finance-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.finance-header .om-icon {
+    font-size: 2rem;
+    color: #800000;
+    margin-bottom: 10px;
+}
+
+.finance-header h1 {
+    color: #800000;
+    font-family: 'Georgia', serif;
+    font-size: 1.5rem; /* Smaller for mobile */
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .finance-header h1 { font-size: 2rem; }
+    .finance-header .om-icon { font-size: 2.5rem; }
+}
+
+/* Report Controls Card */
+.report-controls {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+}
+
+.filter-card {
+    background: white;
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Stacked by default for mobile */
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Desktop Filter Layout */
+@media (min-width: 992px) {
+    .filter-card {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 25px;
+    }
+}
+
+.date-inputs {
+    display: flex;
+    flex-direction: column; /* Stacked inputs for mobile */
+    gap: 15px;
+}
+
+@media (min-width: 576px) {
+    .date-inputs {
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.input-field label {
+    font-weight: bold;
+    color: #800000;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.input-field input {
+    padding: 10px;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    background: #fffdfa;
+    color: #333;
+    width: 100%; /* Full width in its container */
+}
+
+.action-btns {
+    display: flex;
+    flex-direction: column; /* Stacked buttons for mobile */
+    gap: 12px;
+}
+
+
+.fetch-btn, .export-btn {
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    /* white-space: nowrap; */
+}
+
+.fetch-btn {
+    background: #800000;
+    color: #ffd700;
+}
+
+.export-btn {
+    background: #1d6f42;
+    color: white;
+}
+
+.fetch-btn:hover, .export-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Table Section */
+.table-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.table-container {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #d4af37;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    
+    /* CRITICAL FOR MOBILE: Allows horizontal scrolling if table is wide */
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-header {
+    background: #fdf5e6;
+    padding: 15px 20px;
+    border-bottom: 2px solid #d4af37;
+    color: #800000;
+    position: sticky; /* Keeps header visible on scroll */
+    left: 0;
+}
+
+.summary-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Ensures table doesn't squish too much */
+}
+
+.summary-data-table th {
+    background: #800000;
+    color: #ffd700;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.summary-data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.seva-name-cell {
+    font-weight: 600;
+    color: #800000;
+}
+
+.amount-col {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.grand-total-row {
+    background: #800000;
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.grand-total-row td {
+    color: #ffd700 !important;
+    padding: 15px;
+}
+
+/* Center alignments for numerical data */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Empty/Loading states */
+.loading-row, .empty-row {
+    text-align: center;
+    padding: 40px !important;
+    color: #888;
+    font-style: italic;
+}
+
+@media (min-width: 576px) {
+    .action-btns {
+        flex-direction: row;
+    }
+
+    .fetch-btn,.export-btn{
+        align-items: center;
+        /* justify-content: center; */
+    }
+}

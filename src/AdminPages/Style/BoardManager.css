@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Board Manager - Calibri Spreadsheet Logic
+   ========================================================================== */
+
+.board-manager-page {
+    font-family: 'Calibri', 'Candara', 'Segoe UI', Arial, sans-serif;
+    padding: 20px;
+    background-color: #f5e6c8;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.spreadsheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:maroon;
+    padding: 15px 30px;
+    color:#d4af37;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 4px solid #d4af37;
+}
+
+/* Scrollable Container */
+.spreadsheet-outer-wrapper {
+    flex: 1;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden; 
+    display: flex;
+}
+
+.d-back-btn{
+    width:30px;
+    display: flex;
+    align-items: center;
+    background: none;
+    border:none;
+    justify-content: center;
+    color:white;
+
+
+}
+.spreadsheet-scroll-area {
+    overflow: auto; 
+    width: 100%;
+}
+
+.excel-grid {
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed; 
+    width: 1500px; /* Forces horizontal scroll */
+}
+
+/* Column Sizing */
+.col-idx { width: 45px;
+
+/* display:flex; */
+margin-left:10px;
+}
+.col-name { width: 250px; }
+.excel-grid th, .excel-grid td { width: 180px; } 
+.col-actions { width: 100px; }
+
+/* Sticky Columns (Fixed to Left) */
+.sticky-col {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    background: #f9f9f9;
+    border-right: 2px solid #d4af37 !important;
+    margin-left:10px;
+}
+
+.col-name.sticky-col {
+    left: 45px; /* Offset by index column width */
+}
+
+/* Header Styling */
+.excel-grid th {
+    background: #eef1f5;
+    color: #333;
+    font-weight: bold;
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+    position: sticky;
+    top: 0; 
+    z-index: 11;
+}
+
+/* Cell & Input Styling */
+.excel-grid td {
+    border: 1px solid #ddd;
+    padding: 0;
+    height: 45px;
+    background: white;
+    margin-left: 10px;
+}
+
+.excel-grid input, .excel-grid textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    background: transparent;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+}
+
+.excel-grid input:focus {
+    background: #fffdf0;
+    box-shadow: inset 0 0 0 2px #d4af37;
+}
+
+.excel-grid tr:hover td {
+    background-color: #f1f8ff;
+}
+
+/* Actions */
+.col-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    /* height: auto; */
+}
+
+.board-btn-save { color: #27ae60; cursor: pointer; background: none; border: none; font-size: 1.1rem; }
+.board-btn-del { color: #e74c3c; cursor: pointer; background: none; border: none; font-size: 1.1rem; }
+
+.sticky-no{
+    margin-left:15px;
+}
+/* Thin Scrollbar */
+.spreadsheet-scroll-area::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.spreadsheet-scroll-area::-webkit-scrollbar-thumb {
+    background: #8d8773;
+    
+    border-radius: 10px;
+}

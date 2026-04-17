@@ -1,0 +1,183 @@
+/* Container Logic */
+.configuration-container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.configuration-container .page-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #fff3e0;
+    padding-bottom: 15px;
+}
+
+.configuration-container .page-header h2 {
+    color: #800000; /* Deep Maroon */
+    font-family: 'Georgia', serif;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.configuration-container .page-header p {
+    color: #5d4037;
+    font-size: 0.95rem;
+    margin-top: 5px;
+}
+
+/* The Grid/Stack Layout */
+.configuration-container .responsive-content-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+/* Card Styling */
+.configuration-container .management-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s;
+}
+
+.configuration-container .management-card:hover {
+    box-shadow: 0 6px 20px rgba(128, 0, 0, 0.08);
+}
+
+.configuration-container .card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1.5px solid #fff3e0;
+    padding-bottom: 10px;
+}
+
+.configuration-container .card-top h2 {
+    font-size: 1.15rem;
+    color: #bf360c; /* Deeper Saffron/Rust */
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.configuration-container .card-top .icon {
+    color: #ff9933; /* Saffron */
+    font-size: 1.3rem;
+}
+
+/* Inline Form Styling */
+.configuration-container .inline-add-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.configuration-container .inline-add-form input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: #fffdfb;
+    transition: 0.3s;
+}
+
+.configuration-container .inline-add-form input:focus {
+    outline: none;
+    border-color: #ff6600;
+    background-color: #fff;
+}
+
+.configuration-container .inline-add-form button {
+    background: #27ae60; /* Success Green for adding */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.configuration-container .inline-add-form button:hover {
+    background: #219150;
+    transform: scale(1.05);
+}
+
+/* Config List Styling */
+.configuration-container .config-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px; /* Limits height if list grows long */
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.configuration-container .config-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: #fdfaf5;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border-left: 4px solid #d4af37; /* Gold accent */
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.configuration-container .config-list li:hover {
+    background: #fff8e1;
+}
+
+/* Delete Button */
+.configuration-container .delete-icon {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s;
+    padding: 5px;
+}
+
+.configuration-container .delete-icon:hover {
+    color: #c0392b;
+    transform: scale(1.2);
+}
+
+/* Scrollbar for long lists */
+.configuration-container .config-list::-webkit-scrollbar {
+    width: 4px;
+}
+.configuration-container .config-list::-webkit-scrollbar-thumb {
+    background: #ff9933;
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .configuration-container .responsive-content-stack {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .configuration-container .responsive-content-stack {
+        grid-template-columns: 1fr;
+    }
+    
+    .configuration-container .page-header h2 {
+        font-size: 1.5rem;
+    }
+}

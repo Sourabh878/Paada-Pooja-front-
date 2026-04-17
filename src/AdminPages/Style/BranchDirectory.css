@@ -1,0 +1,137 @@
+/* Add to TempleBranchMaster.css */
+:root {
+  --temple-gold: #d4af37;
+  --temple-maroon: #8b0000;
+  --property-blue: #2c3e50;
+  --bg-ivory: #fdfbf7;
+  --glass-white: rgba(255, 255, 255, 0.9);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.wide-nav {
+  max-width: 1200px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.directory-title {
+  color: var(--temple-maroon);
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.branch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card Styling */
+.branch-card {
+  padding: 0 !important; /* Remove standard glass-card padding for image flush */
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(201, 19, 19, 0.699);
+  background-color: #efe8db;
+  color: var(--temple-maroon);
+
+
+}
+
+.branch-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--gold-accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.branch-card-image {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  border:#690909;
+}
+
+.branch-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 2px solid var(--gold-accent);
+}
+
+.branch-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--temple-maroon);
+  color: var(--temple-gold);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--gold-accent);
+}
+
+.branch-card-content {
+  padding: 1.5rem;
+
+}
+
+.branch-names h4 {
+  color: black;
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+}
+
+.kannada-text {
+  color: var(--temple-maroon);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.branch-meta {
+  color: #690909;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.branch-card-footer {
+  border-top: 1px solid rgba(245, 230, 200, 0.1);
+  padding-top: 15px;
+  text-align: right;
+}
+
+.view-link {
+  color: var(--gold-accent);
+  padding:8px;
+  background-color: #690909;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  
+}
+
+.view-link:hover{
+  padding:12px;
+  color:white;
+  
+}
+
+.no-data-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem;
+  color: var(--temple-gold);
+}

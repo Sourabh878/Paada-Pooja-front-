@@ -1,0 +1,309 @@
+.banking-view-wrapper {
+    padding: 25px;
+    background-color:antiquewhite;
+    min-height: 100vh;
+}
+
+.view-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    /* margin-top:100px; */
+}
+.back-btn{
+    margin-top:80px;
+    margin-bottom: 10px;
+    
+}
+.back-btn button{
+    color:black;
+    /* background:#fee2e2; */
+    border-width: 1px;
+    width:60px;
+    border-radius:3px;
+}
+
+.view-header {
+    padding: 20px 25px;
+    background: #fff;
+    border-bottom: 2px solid #800000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.main-icon {
+    font-size: 2.2rem;
+    color: #800000;
+}
+
+.header-title h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1.4rem;
+}
+
+.header-title p {
+    margin: 2px 0 0;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+/* Search and Actions */
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-container svg {
+    position: absolute;
+    left: 12px;
+    color: #94a3b8;
+}
+
+.search-container input {
+    padding: 10px 15px 10px 40px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    width: 280px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-container input:focus {
+    border-color: #800000;
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+}
+
+.refresh-btn {
+    padding: 10px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #475569;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.refresh-btn:hover {
+    background: #800000;
+    color: white;
+}
+
+/* Table Styles */
+.table-responsive {
+    overflow-x: auto;
+    overflow-y:auto;
+}
+
+.banking-display-table{
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+    /* max-height: 200px; */
+    font-family:Calibri;
+    font-size:20px;
+}
+
+.banking-display-table th {
+    background: #f8fafc;
+    padding: 15px;
+    text-align: left;
+    color: #475569;
+    font-size:20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.banking-display-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.branch-col {
+    font-weight: 700;
+    color: #bf360c;
+}
+
+.bank-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.b-name {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.b-ifsc {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.acc-num {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    color: #334155;
+}
+
+.icon-yes { color: #10b981; font-size: 1.2rem; }
+.icon-no { color: #ef4444; font-size: 1.2rem; }
+
+.actions-col {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.bank-edit-btn, .bank-delete-btn {
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.bank-edit-btn{
+    width:30px;
+}
+
+.bank-edit-btn { background: #e0f2fe; color: #0369a1; }
+.bank-delete-btn { background: #fee2e2; color: #b91c1c; }
+
+.bank-edit-btn:hover { background: #0369a1; color: white; }
+.bank-delete-btn:hover { background: #b91c1c; color: white; }
+
+.status-msg {
+    text-align: center;
+    padding: 40px !important;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.text-center { text-align: center; }
+
+
+/* ... Keep existing table styles ... */
+
+/* Modal Overlay (Background Dim) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+/* Modal Content Box */
+.modal-content {
+    background: white;
+    width: 600px;
+    max-width: 90%;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #800000;
+    padding-bottom: 10px;
+}
+
+.modal-header h3 { color: #800000; margin: 0; }
+.close-x { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #999; }
+
+/* Grid for Popup Inputs */
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr  1fr;
+    gap: 30px;
+}
+
+.m-input.full { grid-column: span 2; }
+
+.m-input label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.m-input input, .m-input select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Action Buttons in Modal */
+.modal-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.m-btn-cancel {
+    padding: 10px 20px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.m-btn-save {
+    padding: 10px 20px;
+    background: #800000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.m-btn-save:hover { background: #bf360c; }
+
+.tick-icon{
+    width: 15px;
+}
+

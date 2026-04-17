@@ -1,0 +1,247 @@
+.temple-theme-wrapper {
+  /* background-color: #fffaf0; Light cream background */
+  min-height: 100vh;
+  /* padding: 5px; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top:80px;
+}
+
+.temple-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 3px double #d4af37;
+  padding-bottom: 15px;
+}
+
+.om-icon {
+  font-size: 3rem;
+  color: #ff9933;
+  margin-bottom: 10px;
+  margin-top:100px;
+}
+
+.temple-header h1 {
+  color: #800000;
+  margin: 0;
+  font-variant: small-caps;
+  letter-spacing: 2px;
+}
+
+.devotees-temple-card {
+  background: #ffffff;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(128, 0, 0, 0.1);
+  margin-bottom: 20px;
+  
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #800000;
+  border-bottom: 1px solid #f0e68c;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.input-group.trio {
+  grid-template-columns: 1fr;
+}
+
+.input-field label {
+  display: block;
+  color: #5d4037;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.input-field input, .input-field textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  background: #fffdfa;
+}
+
+.input-field input:focus {
+  outline: none;
+  border-color: #ff9933;
+  box-shadow: 0 0 5px rgba(255, 153, 51, 0.3);
+}
+
+.temple-submit-btn {
+  width: 100%;
+  background-color: #f68a1e;
+  color: white;
+  padding: 15px;
+  border: 1px solid #d4af37;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 4px;
+}
+
+.temple-submit-btn:hover {
+  background: #ef651a;
+  color: #0b0b0b;
+}
+
+.temple-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.temple-table th {
+  background: #800000;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+}
+
+.temple-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f0e68c;
+}
+
+.name-bold { font-weight: bold; color: #800000; }
+.name-kannada { color: #5d4037; font-size: 0.9rem; }
+.contact-info { font-size: 0.8rem; color: #ff9933; margin-top: 4px; }
+
+.edit-icon { color: #800000; cursor: pointer; font-size: 1.2rem; }
+.edit-icon:hover { color: #ff9933; }
+
+.temple-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fffdfa;
+  border: 1px solid #d4af37;
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.temple-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.responsive-content-stack
+{
+    display:flex;
+    justify-content: center;
+}
+
+.in-group{
+  display:flex;
+  justify-content: center;
+  gap:10px;
+}
+
+
+/* --- RESPONSIVENESS --- */
+
+/* For Tablets and smaller Desktops (up to 1024px) */
+@media screen and (max-width: 1024px) {
+    .responsive-content-stack {
+        display: flex;
+        flex-direction: column; /* Stacks Form on top of Table */
+        /* justify-content: center; */
+        align-items: center;
+        gap: 50px;
+       
+    }
+
+    .devotees-temple-card
+    {
+      width:600px;
+      margin: left 40px,right 40px;
+      
+      
+    }
+
+
+}
+
+/* For Mobile Devices (up to 768px) */
+@media screen and (max-width: 768px) {
+    .temple-theme-wrapper {
+        padding: 10px;
+    }
+
+    .temple-header h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Force all grid groups to single column */
+    .input-group, 
+    .input-group.trio {
+        grid-template-columns: 1fr !important; 
+        gap: 10px;
+    }
+
+    .devotees-temple-card {
+        padding: 15px;
+        width:450px;
+        /* margin-left:20px; */
+    }
+    .responsive-content-stack
+{
+    display:flex;
+    justify-content: center;
+}
+}
+
+
+   
+   
+/* Extra Small Devices (up to 480px) */
+@media screen and (max-width: 480px) {
+    .temple-submit-btn {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+    .devotees-temple-card {
+        padding: 10px;
+        width:320px;
+        
+    }
+    .responsive-content-stack
+{
+    display:flex;
+    justify-content: center;
+}
+
+}
+
+
+@media screen and (max-width: 320px) {
+    .temple-submit-btn {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+    .devotees-temple-card {
+        padding: 10px;
+        max-width:280px;
+    }
+    .responsive-content-stack
+{
+    display:flex;
+    justify-content: center;
+    max-width: 300px;
+    overflow-x: scroll;
+}
+
+}

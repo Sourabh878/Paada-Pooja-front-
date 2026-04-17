@@ -1,0 +1,122 @@
+.navbar {
+  background: linear-gradient(135deg, #FF9933, #FF6600);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #FFD700;
+}
+
+.nav-logo span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Button Styling */
+.login-link-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.login-link-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.register-btn {
+  background: #FFD700; /* Gold */
+  color: #BF360C;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+}
+
+.menu-icon {
+  display: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* 📱 Mobile Layout */
+@media (max-width: 768px) {
+  .nav-logo span {
+    font-size: 1.1rem;
+    max-width: 150px; /* Prevents text wrap issues */
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-actions {
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    flex-direction: column;
+    background: #FF8000;
+    width: 100%;
+    height: 200px;
+    justify-content: center;
+    transition: 0.4s;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+  }
+
+  .nav-actions.active {
+    left: 0;
+  }
+
+  .login-link-btn, .register-btn {
+    width: 80%;
+    text-align: center;
+  }
+}

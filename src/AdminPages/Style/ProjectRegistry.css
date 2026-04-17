@@ -1,0 +1,202 @@
+/* --- Base Reset & Wrapper --- */
+.project-page-wrapper {
+    min-height: 100vh;
+    margin-top: 60px;
+    /* background-color: #f8f9fa; */
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scroll on small phones */
+    font-family:Calibri;
+}
+
+.project-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.p-icon { 
+    font-size: 2.5rem; 
+    color: maroon; 
+    flex-shrink: 0; 
+}
+.p-details{
+
+    width:80%;
+}
+
+/* --- Form Card --- */
+.project-form-glass {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- Sections --- */
+.form-section { 
+    margin-bottom: 35px; 
+    width: 100%;
+}
+
+.form-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: maroon;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* --- THE MASTER GRID --- */
+.p-grid {
+    display: grid;
+    /* 2 columns for desktop/tablet */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    width: 100%;
+}
+
+/* Specific Field Alignment */
+.p-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.p-field.full { 
+    grid-column: 1 / -1; /* Spans both columns */
+}
+
+.p-field label { 
+    font-weight: 600; 
+    margin-bottom: 8px; 
+    color: #444; 
+    font-size: 0.9rem; 
+}
+
+.p-field input, 
+.p-field select, 
+.p-field textarea {
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #d1d1d1; 
+    border-radius: 8px; 
+    background: #ffffff;
+    font-size: 1rem;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+    transition: border-color 0.2s;
+}
+
+.p-field input:focus, .p-field select:focus {
+    border-color: maroon;
+    outline: none;
+}
+
+/* --- STAGES TIMELINE (Reflexive) --- */
+.stages-timeline {
+    background: #fffcf9;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid maroon;
+    margin-top: 10px;
+}
+
+.stage-row {
+    display: flex;
+    flex-direction: column; /* Stacked by default for better mobile alignment */
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.stage-name-col { 
+    font-weight: 700; 
+    color: #5d4037; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stage-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for dates */
+    gap: 15px;
+}
+
+.stage-inputs .remark-input {
+    grid-column: 1 / -1; /* Remarks always full width below dates */
+}
+
+/* --- BUTTON --- */
+.project-submit-btn {
+    width: 100%;
+    margin-top: 30px;
+    padding: 16px;
+    background: #5d4037;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.project-submit-btn:hover { background: #3e2723; }
+
+/* =============================================
+   RESPONSIVE OVERRIDES
+   ============================================= */
+
+/* Desktop view (Keep 2 columns) */
+@media (min-width: 769px) {
+    .stage-row {
+        flex-direction: row; /* Side-by-side only on big screens */
+        align-items: flex-end;
+    }
+    .stage-name-col {
+        flex: 0 0 200px; /* Fixed width for labels on desktop */
+    }
+    .stage-inputs {
+        flex: 1;
+        grid-template-columns: 1fr 1fr 2fr; /* 3 items in one line */
+    }
+    .stage-inputs .remark-input {
+        grid-column: auto;
+    }
+}
+
+/* Mobile view (Force single column) */
+@media (max-width: 600px) {
+    .p-grid {
+        grid-template-columns: 1fr; /* 1 column only */
+        gap: 15px;
+    }
+
+    .project-form-glass {
+        padding: 20px;
+    }
+
+    .stage-inputs {
+        grid-template-columns: 1fr; /* Dates stack on mobile */
+    }
+
+    .project-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}

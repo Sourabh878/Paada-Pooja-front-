@@ -1,0 +1,162 @@
+# Query: "${process.env.base_url}
+# ContextLines: 1
+
+36 results - 25 files
+
+src\AdminPages\BranchBankingForm.jsx:
+  36      try {
+  37:       const res = await fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+  38          headers: { Authorization: `Bearer ${getToken()}` },
+
+  49      try {
+  50:       const res = await fetch(`${process.env.base_url}/api/BankDetails`, {
+  51          method: "POST",
+
+src\AdminPages\BranchBankingView.jsx:
+  37      try {
+  38:       const res = await fetch(`${process.env.base_url}/api/BankDetails`, {
+  39          headers: { Authorization: `Bearer ${getToken()}` },
+
+  49      try {
+  50:       const res = await fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+  51          headers: { Authorization: `Bearer ${getToken()}` },
+
+src\AdminPages\DocumentDirectory.jsx:
+  29        const [docRes, brRes] = await Promise.all([
+  30:         fetch(`${process.env.base_url}/api/documents/all`, {
+  31            headers: { Authorization: `Bearer ${getToken()}` },
+  32          }),
+  33:         fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+  34            headers: { Authorization: `Bearer ${getToken()}` },
+
+src\AdminPages\DocumentUpload.jsx:
+  31      try {
+  32:       const res = await fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+  33          headers: { Authorization: `Bearer ${getToken()}` },
+
+  82      try {
+  83:       const res = await fetch(`${process.env.base_url}/api/documents/upload`, {
+  84          method: "POST",
+
+src\AdminPages\EventDetailsForm.jsx:
+  38      try {
+  39:       const res = await fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+  40          headers: { Authorization: `Bearer ${getToken()}` },
+
+  54      try {
+  55:       const res = await fetch(`${process.env.base_url}/api/EventMaster`, {
+  56          method: "POST",
+
+src\AdminPages\EventDetailsView.jsx:
+  38        const [evRes, brRes] = await Promise.all([
+  39:         fetch(`${process.env.base_url}/api/EventMaster`, {
+  40            headers: { Authorization: `Bearer ${getToken()}` },
+  41          }),
+  42:         fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+  43            headers: { Authorization: `Bearer ${getToken()}` },
+
+src\AdminPages\PriestMaster.jsx:
+  44  
+  45:   const API_BASE = `${process.env.base_url}/api`;
+  46  
+
+src\AdminPages\ProjectDirectory.jsx:
+  46        const [projRes, ledRes, brRes] = await Promise.all([
+  47:         fetch(`${process.env.base_url}/api/projects/all`, { headers }),
+  48:         fetch(`${process.env.base_url}/api/locations`, { headers }),
+  49:         fetch(`${process.env.base_url}/api/TempleBranches/all`, { headers }),
+  50        ]);
+
+src\AdminPages\ProjectRegistry.jsx:
+   69          const [brRes, ldRes] = await Promise.all([
+   70:           fetch(`${process.env.base_url}/api/TempleBranches/all`, { headers }),
+   71:           fetch(`${process.env.base_url}/api/locations`, { headers }),
+   72          ]);
+
+  110      try {
+  111:       const res = await fetch(`${process.env.base_url}/api/projects/register`, {
+  112          method: "POST",
+
+src\AdminPages\PropertyManager.jsx:
+  28  
+  29:   const API_BASE = `${process.env.base_url}/api`;
+  30  
+
+src\AdminPages\UserManager.jsx:
+  35  
+  36:   const API_BASE = `${process.env.base_url}/api/ManageUser`;
+  37  
+
+src\AdminPages\components\AddCategory.jsx:
+  15  
+  16:   const API_BASE = `${process.env.base_url}/api`;
+  17    const headers = {
+
+src\AdminPages\components\AssetDetail.jsx:
+  43  
+  44:       const res2 = await fetch(`${process.env.base_url}/api/properties/pcat`, {
+  45          headers: { Authorization: `Bearer ${getToken()}` },
+
+src\AdminPages\components\SevaFinance.jsx:
+  23  
+  24:   const API_BASE = `${process.env.base_url}/api`;
+  25  
+
+src\AdminPages\components\SevaManager.jsx:
+  29  
+  30:   const API_BASE = `${process.env.base_url}/api`;
+  31  
+
+src\DevoteePages\BookingDirectory.jsx:
+  21      try {
+  22:       const res = await fetch(`${process.env.base_url}/api/devoteeCheck`);
+  23        const data = await res.json();
+
+  32      try {
+  33:       const res = await fetch(`${process.env.base_url}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
+  34        const json = await res.json();
+
+src\DevoteePages\DevoteeRegistration.jsx:
+  123      try {
+  124:       const res = await fetch(`${process.env.base_url}/api/devotees/`, {
+  125          method: "POST",
+
+src\DevoteePages\DevoteeWelcome.jsx:
+  62        const res = await fetch(
+  63:         `${process.env.base_url}/api/devoteeCheck/devotee`,
+  64          {
+
+src\pages\BookingManager.jsx:
+  24  
+  25:   const API_BASE = `${process.env.base_url}/api`;
+  26  
+
+src\pages\BookProperty.jsx:
+  36  
+  37:   const API_BASE = `${process.env.base_url}/api`;
+  38    const today = new Date().toISOString().split("T")[0];
+
+src\pages\BookSeva.jsx:
+  36  
+  37:   const API_BASE = `${process.env.base_url}/api`;
+  38    const today = new Date().toISOString().split("T")[0];
+
+src\pages\DevoteeDirectory.jsx:
+  24  
+  25:   const API_BASE = `${process.env.base_url}/api`;
+  26  
+
+src\pages\DevoteeMater.jsx:
+  33  
+  34:   const API_BASE = `${process.env.base_url}/api`;
+  35  
+
+src\pages\PriestDirectory.jsx:
+  20  
+  21:   const API_BASE = `${process.env.base_url}/api`;
+  22  
+
+src\services\authService.js:
+  2  
+  3: const API_URL = `${process.env.base_url}/api/auth`;
+  4  

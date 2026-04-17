@@ -1,0 +1,335 @@
+.directory-wrapper {
+  padding: 10px;
+  /* background-color: #fdfaf5; */
+  min-height: 100vh;
+  /* margin-top:80px; */
+}
+
+.directory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 3px double #d4af37;
+  padding-bottom: 20px;
+}
+
+.om-logo { font-size: 2.5rem; color: #ff9933; margin-right: 15px; }
+.directory-header h1 { color: #800000; margin: 0; font-family: 'Georgia', serif; }
+.directory-header p { color: #5d4037; margin: 5px 0 0 0; }
+
+.directory-search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #d4af37;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 450px;
+  box-shadow: 0 4px 10px rgba(128, 0, 0, 0.05);
+  margin-top:10px;
+}
+
+.directory-search-bar input {
+  border: none;
+  outline: none;
+  width: 100%;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.count-tag {
+  background: #ff9933;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Card Grid Layout */
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.devotee-card {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+}
+
+.devotee-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(128, 0, 0, 0.1);
+}
+
+.card-accent {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 5px;
+  background: linear-gradient(to right, #800000, #ff9933);
+}
+
+.devotee-info h3 { color: #800000; margin: 0 0 5px 0; }
+.kannada-text { color: #5d4037; font-size: 0.95rem; margin-bottom: 15px; }
+.detail-row { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #757575; margin-bottom: 8px; }
+
+.meta-info {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #d4af37;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.85rem;
+}
+
+.card-actions { margin-top: 20px; display: flex; justify-content: flex-end; }
+.btn-edit {
+  background: #fff8e1;
+  color: #ff8f00;
+  border: 1px solid #ffe082;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(40, 15, 0, 0.75); /* Deep brown/maroon overlay */
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2500;
+}
+
+.edit-modal {
+  background: #fff;
+  width: 90%;
+  max-width: 550px; /* Narrower for single-column stack */
+  max-height: 85vh; /* Keep modal within screen height */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-top: 8px solid #800000;
+}
+
+.modal-header {
+  padding: 20px;
+  background: #fdfaf5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.edit-form-scrollable {
+  padding: 20px;
+  overflow-y: auto; /* Makes the entire form + button scrollable */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.f-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.f-field label {
+  font-weight: bold;
+  color: #800000;
+  font-size: 0.9rem;
+}
+
+.f-field input, .f-field textarea {
+  padding: 12px;
+  border: 1px solid #d4af37;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #fffdfa;
+}
+
+.form-action-container {
+  margin-top: 10px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.save-btn {
+  background: #800000;
+  color: #d4af37;
+  border: 2px solid #d4af37;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background: #ff9933;
+  color: #800000;
+}
+
+.discard-btn {
+  background: transparent;
+  color: #888;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+/* Custom Scrollbar for Temple Aesthetic */
+.edit-form-scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+.edit-form-scrollable::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 10px;
+}
+
+.directory-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.devotee-strip {
+  background: #ffffff;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.devotee-strip:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 15px rgba(128, 0, 0, 0.1);
+}
+
+.strip-accent {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: #800000;
+}
+
+.strip-section {
+  flex: 1;
+  padding: 0 15px;
+  border-right: 1px solid #f0e68c;
+}
+
+.strip-section:last-of-type {
+  border-right: none;
+}
+
+.label-sm {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.main-val {
+  font-weight: 700;
+  color: #800000;
+  font-size: 1.1rem;
+}
+
+.sub-val {
+  font-size: 0.85rem;
+  color: #5d4037;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.strip-actions {
+  padding-left: 20px;
+}
+
+.strip-edit-btn {
+  background: #fff8e1;
+  color: #ff9933;
+  border: 1px solid #ff9933;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.strip-edit-btn:hover {
+  background: #ff9933;
+  color: #fff;
+}
+
+/* Responsiveness for Strip */
+@media screen and (max-width: 900px) {
+  .devotee-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 15px;
+  }
+  .strip-section {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    padding: 10px 0;
+  }
+  .directory-search-bar{
+    width: auto;
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+  .edit-modal{
+    width:auto;
+    margin-right:50px;
+  }
+}
+
+
+.close-btn{
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+  width:1px
+}

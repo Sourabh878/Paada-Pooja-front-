@@ -1,0 +1,81 @@
+# Query: "${process.env.base_url}
+
+32 results - 23 files
+
+src\AdminPages\DocumentDirectory.jsx:
+  30:         fetch(`${process.env.base_url}/api/documents/all`, {
+  33:         fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+
+src\AdminPages\DocumentUpload.jsx:
+  32:       const res = await fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+  83:       const res = await fetch(`${process.env.base_url}/api/documents/upload`, {
+
+src\AdminPages\EventDetailsForm.jsx:
+  39:       const res = await fetch("${process.env.base_url}/api/TempleBranches/all", {
+  55:       const res = await fetch("${process.env.base_url}/api/EventMaster", {
+
+src\AdminPages\EventDetailsView.jsx:
+  39:         fetch("${process.env.base_url}/api/EventMaster", {
+  42:         fetch("${process.env.base_url}/api/TempleBranches/all", {
+
+src\AdminPages\PriestMaster.jsx:
+  45:   const API_BASE = "${process.env.base_url}/api";
+
+src\AdminPages\ProjectDirectory.jsx:
+  47:         fetch("${process.env.base_url}/api/projects/all", { headers }),
+  48:         fetch("${process.env.base_url}/api/locations", { headers }),
+  49:         fetch("${process.env.base_url}/api/TempleBranches/all", { headers }),
+
+src\AdminPages\ProjectRegistry.jsx:
+   70:           fetch("${process.env.base_url}/api/TempleBranches/all", { headers }),
+   71:           fetch("${process.env.base_url}/api/locations", { headers }),
+  111:       const res = await fetch("${process.env.base_url}/api/projects/register", {
+
+src\AdminPages\PropertyManager.jsx:
+  29:   const API_BASE = "${process.env.base_url}/api";
+
+src\AdminPages\UserManager.jsx:
+  36:   const API_BASE = "${process.env.base_url}/api/ManageUser";
+
+src\AdminPages\components\AddCategory.jsx:
+  16:   const API_BASE = "${process.env.base_url}/api";
+
+src\AdminPages\components\AssetDetail.jsx:
+  44:       const res2 = await fetch("${process.env.base_url}/api/properties/pcat", {
+
+src\AdminPages\components\SevaFinance.jsx:
+  24:   const API_BASE = "${process.env.base_url}/api";
+
+src\AdminPages\components\SevaManager.jsx:
+  30:   const API_BASE = "${process.env.base_url}/api";
+
+src\DevoteePages\BookingDirectory.jsx:
+  22:       const res = await fetch("${process.env.base_url}/api/devoteeCheck");
+  33:       const res = await fetch("${process.env.base_url}/api/devoteeCheck/counts"); // Update with your actual count API endpoint
+
+src\DevoteePages\DevoteeRegistration.jsx:
+  124:       const res = await fetch("${process.env.base_url}/api/devotees/", {
+
+src\DevoteePages\DevoteeWelcome.jsx:
+  63:         "${process.env.base_url}/api/devoteeCheck/devotee",
+
+src\pages\BookingManager.jsx:
+  25:   const API_BASE = "${process.env.base_url}/api";
+
+src\pages\BookProperty.jsx:
+  37:   const API_BASE = "${process.env.base_url}/api";
+
+src\pages\BookSeva.jsx:
+  37:   const API_BASE = "${process.env.base_url}/api";
+
+src\pages\DevoteeDirectory.jsx:
+  25:   const API_BASE = "${process.env.base_url}/api";
+
+src\pages\DevoteeMater.jsx:
+  34:   const API_BASE = "${process.env.base_url}/api";
+
+src\pages\PriestDirectory.jsx:
+  21:   const API_BASE = "${process.env.base_url}/api";
+
+src\services\authService.js:
+  3: const API_URL = "${process.env.base_url}/api/auth";

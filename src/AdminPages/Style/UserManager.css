@@ -1,0 +1,349 @@
+/* Page Wrapper */
+.user-manager-page {
+  background-color: #fffaf0; /* Sattvic Off-White/Cream */
+  min-height: 100vh;
+  margin-top:80px;
+}
+
+.user-manager-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Header Alignment */
+.page-header {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.om-icon {
+  font-size: 3rem;
+  color: #800000; /* Deep Maroon */
+  margin-top: 0;
+  /* margin-bottom: 10px;
+   */
+}
+
+.page-header h1 {
+  color: #800000;
+  font-family: 'Georgia', serif;
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+.header-line {
+  width: 150px;
+  height: 3px;
+  background: #d4af37; /* Gold */
+  margin: 15px auto;
+  border-radius: 5px;
+}
+
+/* Dashboard Grid - Aligning content correctly */
+.admin-dashboard-grid {
+  display:grid ;
+  grid-template-columns: 450px 1fr; 
+  gap: 30px;
+  align-items: stretch; /* Cards will have equal height */
+}
+
+/* Card Styling */
+.user-config-card {
+  background: #ffffff;
+  border: 1px solid #d4af37;
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(128, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #800000;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 2px double #f0e68c;
+}
+
+.card-header h2 {
+  font-size: 1.3rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Form Styles */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.f-row {
+  display: flex;
+  gap: 15px;
+}
+
+.f-group label {
+  display: block;
+  font-weight: bold;
+  color: #5d4037;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  background: #fffdfa;
+  border: 1px solid #e0d8c0;
+  border-radius: 8px;
+  padding: 0 15px;
+  transition: 0.3s;
+}
+
+.input-with-icon:focus-within {
+  border-color: #800000;
+  box-shadow: 0 0 5px rgba(128, 0, 0, 0.1);
+}
+
+.input-with-icon svg {
+  color: #ff9933; /* Saffron Icons */
+  font-size: 1.1rem;
+}
+
+.input-with-icon input, 
+.input-with-icon select {
+  border: none;
+  background: none;
+  padding: 12px;
+  width: 100%;
+  outline: none;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.admin-submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: #800000;
+  color: #ffd700;
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.admin-submit-btn:hover:not(:disabled) {
+  background: #a52a2a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(128, 0, 0, 0.2);
+}
+
+.admin-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* User List Styling */
+.user-scroll-list {
+  flex-grow: 1;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.user-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  background: #fff;
+  border-bottom: 1px solid #f9f4e8;
+  transition: 0.2s;
+}
+
+.user-strip:hover {
+  background: #fffdf5;
+  border-left: 4px solid #800000;
+}
+
+.user-meta .u-name {
+  font-weight: bold;
+  color: #800000;
+  font-size: 1.05rem;
+}
+
+.user-meta .u-email, 
+.user-meta .u-phone {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+.strip-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.role-badge {
+  background: #fff8e1;
+  color: #800000;
+  border: 1px solid #d4af37;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.user-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.2s;
+}
+
+.icon-btn.edit { color: #ff9933; }
+.icon-btn.delete { color: #e74c3c; }
+
+.icon-btn:hover { transform: scale(1.2); }
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  padding: 50px;
+}
+
+/* Scrollbar Styling */
+.user-scroll-list::-webkit-scrollbar { width: 6px; }
+.user-scroll-list::-webkit-scrollbar-track { background: #f1f1f1; }
+.user-scroll-list::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
+
+.cancel-edit {
+  margin-left: auto;
+  cursor: pointer;
+  color: #e74c3c;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.cancel-edit:hover {
+  transform: rotate(90deg);
+}
+
+.admin-submit-btn.update-mode {
+  background: #ff9933; /* Saffron for update mode */
+  border-color: #e67e22;
+  color: white;
+}
+
+.admin-submit-btn.update-mode:hover {
+  background: #e67e22;
+}
+
+/* Highlight the card being edited */
+.user-form-section.is-editing {
+  border: 2px solid #ff9933;
+  background-color: #fffdf5;
+}
+
+/* Radio Button Styling */
+.status-radio-group {
+  margin-top: 10px;
+  background: #fff8e1;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #f0e68c;
+}
+
+.radio-options {
+  display: flex;
+  gap: 25px;
+  margin-top: 8px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.status-text.active-txt { color: #27ae60; }
+.status-text.inactive-txt { color: #e74c3c; }
+
+/* List Styling for Deactivated Users */
+.user-strip.deactivated {
+  opacity: 0.6;
+  background-color: #f5f5f5;
+  border-left: 4px solid #ccc;
+}
+
+.inactive-badge {
+  font-size: 0.65rem;
+  background: #e74c3c;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+/* Ensure radio buttons look neat */
+.radio-options input[type="radio"] {
+  accent-color: #800000;
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .admin-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .user-scroll-list {
+    max-height: 400px;
+  }
+  .user-form-section{
+
+    width:auto;
+  }
+}
+
+
+@media (max-width:320px) {
+  /* .admin-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .user-scroll-list {
+    max-height: 400px;
+  } */
+  .user-form-section{
+
+    width:auto;
+  }
+  .f-row{
+    flex-direction: column;
+  }
+}
