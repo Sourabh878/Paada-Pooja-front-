@@ -52,7 +52,7 @@ const BookingDirectory = () => {
         }
         try {
             
-            const res = await fetch(`import.meta.env.VITE_API_URL/api/devoteeCheck/update-status/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-status/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ verify_status: newStatus })

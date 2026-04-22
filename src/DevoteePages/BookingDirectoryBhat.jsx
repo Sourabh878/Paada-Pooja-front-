@@ -30,7 +30,12 @@ const BookingDirectoryBhat = () => {
     // New function to fetch seva counts
     const fetchStats = async () => {
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/counts`
+
+
+
+
+            ); // Update with your actual count API endpoint
             const json = await res.json();
             if (json.success) {
                 setStats(json.data);
@@ -60,7 +65,7 @@ const BookingDirectoryBhat = () => {
 
     const handleSave = async () => {
         try {
-            const res = await fetch(`import.meta.env.VITE_API_URL/api/devoteeCheck/update-amounts/${selectedBooking.id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-amounts/${selectedBooking.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(amounts)
@@ -94,7 +99,7 @@ const BookingDirectoryBhat = () => {
 
    const toggleSeva = async (id, sevaNumber, currentValue) => {
     try {
-        await fetch(`import.meta.env.VITE_API_URL/api/devoteeCheck/status/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/status/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
