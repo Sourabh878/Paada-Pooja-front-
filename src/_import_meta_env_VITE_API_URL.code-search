@@ -1,0 +1,31 @@
+# Query: 'import.meta.env.VITE_API_URL
+# ContextLines: 1
+
+6 results - 3 files
+
+src\DevoteePages\BookingDirectory.jsx:
+  19          try {
+  20:             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck`);
+  21              const data = await res.json();
+
+  30          try {
+  31:             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
+  32              const json = await res.json();
+
+src\DevoteePages\BookingDirectoryBhat.jsx:
+  21          try {
+  22:             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/bhatBoard`);
+  23              const data = await res.json();
+
+  32          try {
+  33:             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
+  34              const json = await res.json();
+
+src\DevoteePages\DevoteeWelcome.jsx:
+   54          try {
+   55:             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/devotee`, {
+   56                  method: 'POST',
+
+  112          try {
+  113:             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/book-seva`, {
+  114                  method: 'POST',

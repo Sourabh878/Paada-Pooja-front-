@@ -52,7 +52,7 @@ const DevoteeWelcome = () => {
         setLoading(true);
 
         try {
-            const res = await fetch('http://localhost:5000/api/devoteeCheck/devotee', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/devotee`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const DevoteeWelcome = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/devoteeCheck/book-seva', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/book-seva`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
