@@ -25,7 +25,7 @@ const DocumentDetails = () => {
   }, [id]);
 
   const fetchDocDetails = async () => {
-    const res = await fetch(`${process.env.base_url}/api/documents/${id}`, {
+    const res = await fetch(`${import.meta.env.base_url}/api/documents/${id}`, {
       headers: { Authorization: `Bearer ${getToken()}` },
     });
     if (res.ok) setDocData(await res.json());
@@ -70,7 +70,7 @@ const DocumentDetails = () => {
 
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/documents/images/addImage/${id}`,
+        `${import.meta.env.base_url}/api/documents/images/addImage/${id}`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${getToken()}` },
@@ -88,7 +88,7 @@ const DocumentDetails = () => {
     if (!window.confirm("Delete this scanned page permanently?")) return;
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/documents/images/${photoId}`,
+        `${import.meta.env.base_url}/api/documents/images/${photoId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${getToken()}` },
@@ -106,7 +106,7 @@ const DocumentDetails = () => {
   };
 
   const handleUpdate = async () => {
-    const res = await fetch(`${process.env.base_url}/api/documents/${id}`, {
+    const res = await fetch(`${import.meta.env.base_url}/api/documents/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -129,7 +129,7 @@ const DocumentDetails = () => {
       return;
     try {
       const response = await fetch(
-        `${process.env.base_url}/api/documents/${id}`,
+        `${import.meta.env.base_url}/api/documents/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${getToken()}` },

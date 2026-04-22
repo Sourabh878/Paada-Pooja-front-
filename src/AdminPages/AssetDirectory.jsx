@@ -17,7 +17,7 @@ const AssetDirectory = () => {
 
   const fetchAssets = async () => {
     try {
-      const res = await fetch(`${process.env.base_url}/api/assets`, {
+      const res = await fetch(`${import.meta.env.base_url}/api/assets`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
 

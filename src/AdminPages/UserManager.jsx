@@ -33,7 +33,7 @@ const UserManager = () => {
     is_active: true, // Default to active
   });
 
-  const API_BASE = `${process.env.base_url}/api/ManageUser`;
+  const API_BASE = `${import.meta.env.base_url}/api/ManageUser`;
 
   useEffect(() => {
     fetchInitialData();

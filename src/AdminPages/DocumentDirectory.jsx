@@ -27,10 +27,10 @@ const DocumentDirectory = () => {
   const fetchInitialData = async () => {
     try {
       const [docRes, brRes] = await Promise.all([
-        fetch(`${process.env.base_url}/api/documents/all`, {
+        fetch(`${import.meta.env.base_url}/api/documents/all`, {
           headers: { Authorization: `Bearer ${getToken()}` },
         }),
-        fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+        fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, {
           headers: { Authorization: `Bearer ${getToken()}` },
         }),
       ]);

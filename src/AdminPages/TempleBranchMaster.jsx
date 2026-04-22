@@ -43,7 +43,7 @@ const TempleBranchMaster = () => {
       selectedFiles.forEach((file) => data.append("images", file));
 
       const res = await fetch(
-        `${process.env.base_url}/api/TempleBranches/addBranch`,
+        `${import.meta.env.base_url}/api/TempleBranches/addBranch`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${getToken()}` },

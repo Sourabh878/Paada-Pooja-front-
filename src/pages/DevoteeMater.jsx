@@ -31,7 +31,7 @@ const DevoteeMaster = () => {
     u_id: getUserId(),
   });
 
-  const API_BASE = `${process.env.base_url}/api`;
+  const API_BASE = `${import.meta.env.base_url}/api`;
 
   const validate = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

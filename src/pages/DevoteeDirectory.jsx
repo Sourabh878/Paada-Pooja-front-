@@ -22,7 +22,7 @@ const DevoteeDirectory = () => {
   const [editingDevotee, setEditingDevotee] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_BASE = `${process.env.base_url}/api`;
+  const API_BASE = `${import.meta.env.base_url}/api`;
 
   const fetchDevotees = async () => {
     setLoading(true);

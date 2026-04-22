@@ -67,8 +67,8 @@ const ProjectRegistry = () => {
       try {
         const headers = { Authorization: `Bearer ${getToken()}` };
         const [brRes, ldRes] = await Promise.all([
-          fetch(`${process.env.base_url}/api/TempleBranches/all`, { headers }),
-          fetch(`${process.env.base_url}/api/locations`, { headers }),
+          fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, { headers }),
+          fetch(`${import.meta.env.base_url}/api/locations`, { headers }),
         ]);
         if (brRes.ok) setBranches(await brRes.json());
         if (ldRes.ok) setLedgers(await ldRes.json());
@@ -108,7 +108,7 @@ const ProjectRegistry = () => {
     };
 
     try {
-      const res = await fetch(`${process.env.base_url}/api/projects/register`, {
+      const res = await fetch(`${import.meta.env.base_url}/api/projects/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

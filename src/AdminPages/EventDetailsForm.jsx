@@ -36,7 +36,7 @@ const EventDetailsForm = () => {
 
   const fetchBranches = async () => {
     try {
-      const res = await fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+      const res = await fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
       if (res.ok) setBranches(await res.json());
@@ -52,7 +52,7 @@ const EventDetailsForm = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.base_url}/api/EventMaster`, {
+      const res = await fetch(`${import.meta.env.base_url}/api/EventMaster`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

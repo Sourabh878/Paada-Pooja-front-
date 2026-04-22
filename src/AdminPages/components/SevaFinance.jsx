@@ -21,7 +21,7 @@ const SevaFinance = () => {
     to: new Date().toISOString().split("T")[0],
   });
 
-  const API_BASE = `${process.env.base_url}/api`;
+  const API_BASE = `${import.meta.env.base_url}/api`;
 
   useEffect(() => {
     fetchSummaryData();

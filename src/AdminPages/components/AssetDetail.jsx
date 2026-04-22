@@ -37,11 +37,11 @@ const AssetDetail = () => {
 
   const fetchAssetDetails = async () => {
     try {
-      const res = await fetch(`${process.env.base_url}/api/assets/${id}`, {
+      const res = await fetch(`${import.meta.env.base_url}/api/assets/${id}`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
 
-      const res2 = await fetch(`${process.env.base_url}/api/properties/pcat`, {
+      const res2 = await fetch(`${import.meta.env.base_url}/api/properties/pcat`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
 
@@ -85,7 +85,7 @@ const AssetDetail = () => {
           JSON.stringify({ type: "GALLERY", is_primary: false }),
         );
 
-        const res = await fetch(`${process.env.base_url}/api/assets/${id}`, {
+        const res = await fetch(`${import.meta.env.base_url}/api/assets/${id}`, {
           method: "POST",
           headers: { Authorization: `Bearer ${getToken()}` },
           body: imageFormData,
@@ -111,7 +111,7 @@ const AssetDetail = () => {
 
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/assets/images/${photoId}`,
+        `${import.meta.env.base_url}/api/assets/images/${photoId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${getToken()}` },
@@ -145,7 +145,7 @@ const AssetDetail = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${process.env.base_url}/api/assets/${id}`, {
+      const res = await fetch(`${import.meta.env.base_url}/api/assets/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

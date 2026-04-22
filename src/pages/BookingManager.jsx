@@ -22,7 +22,7 @@ const BookingManager = ({ navbar }) => {
   const [filterDate, setFilterDate] = useState("");
   console.log(filterDate);
 
-  const API_BASE = `${process.env.base_url}/api`;
+  const API_BASE = `${import.meta.env.base_url}/api`;
 
   useEffect(() => {
     fetchBookings();

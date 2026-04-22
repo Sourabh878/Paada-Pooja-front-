@@ -17,7 +17,7 @@ const BoardManager = () => {
   const fetchMembers = async () => {
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/board-members/${branchId}`,
+        `${import.meta.env.base_url}/api/board-members/${branchId}`,
         {
           headers: { Authorization: `Bearer ${getToken()}` },
         },
@@ -47,7 +47,7 @@ const BoardManager = () => {
       return alert("Name and Designation required");
 
     try {
-      const res = await fetch(`${process.env.base_url}/api/board-members/save`, {
+      const res = await fetch(`${import.meta.env.base_url}/api/board-members/save`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const BoardManager = () => {
 
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/board-members/${id}`,
+        `${import.meta.env.base_url}/api/board-members/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${getToken()}` },

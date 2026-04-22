@@ -36,10 +36,10 @@ const EventDetailsView = () => {
     setLoading(true);
     try {
       const [evRes, brRes] = await Promise.all([
-        fetch(`${process.env.base_url}/api/EventMaster`, {
+        fetch(`${import.meta.env.base_url}/api/EventMaster`, {
           headers: { Authorization: `Bearer ${getToken()}` },
         }),
-        fetch(`${process.env.base_url}/api/TempleBranches/all`, {
+        fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, {
           headers: { Authorization: `Bearer ${getToken()}` },
         }),
       ]);
@@ -101,7 +101,7 @@ const EventDetailsView = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/EventMaster/${editingData.event_id}`,
+        `${import.meta.env.base_url}/api/EventMaster/${editingData.event_id}`,
         {
           method: "PUT",
           headers: {
@@ -125,7 +125,7 @@ const EventDetailsView = () => {
 
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/EventMaster/${event_id}`,
+        `${import.meta.env.base_url}/api/EventMaster/${event_id}`,
         {
           method: "DELETE",
           headers: {

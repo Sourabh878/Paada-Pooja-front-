@@ -60,7 +60,7 @@ const DevoteeWelcome = () => {
 
     try {
       const res = await fetch(
-        `${process.env.base_url}/api/devoteeCheck/devotee`,
+        `${import.meta.env.base_url}/api/devoteeCheck/devotee`,
         {
           method: "POST",
           headers: {
@@ -117,7 +117,7 @@ const DevoteeWelcome = () => {
 
     try {
       const response = await fetch(
-        '${process.env.base_url}/api/devoteeCheck/book-seva',
+        '${import.meta.env.base_url}/api/devoteeCheck/book-seva',
         {
           method: "POST",
           headers: {
