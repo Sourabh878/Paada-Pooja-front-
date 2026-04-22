@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Style/BookingDirectory.css';
 
-const BookingDirectory = () => {
+const BookingDirectoryBhat = () => {
     const [bookings, setBookings] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState(null);
     const [stats, setStats] = useState(null); // State for the count bar
     const [amounts, setAmounts] = useState({
         donation: '',
@@ -17,7 +19,7 @@ const BookingDirectory = () => {
 
     const fetchBookings = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/devoteeCheck');
+            const res = await fetch('http://localhost:5000/api/devoteeCheck/bhatBoard');
             const data = await res.json();
             setBookings(data);
         } catch (error) {
@@ -43,30 +45,72 @@ const BookingDirectory = () => {
         fetchStats();
     }, []);
 
+    const handleClearClick = (booking) => {
+        setSelectedBooking(booking);
+        setAmounts({
+            donation: booking.donation || 0,
+            GD: booking.GD || 0,
+            BD: booking.BD || 0,
+            status: 1
+        });
+        setIsModalOpen(true);
+    };
+
     
 
-    const handleStatusChange = async (name,id, newStatus) => {
-        if(!confirm(`Do You Want to confirm Payment Status of ${name}`))
-        {
-            return;
-        }
+    const handleSave = async () => {
         try {
-            
-            const res = await fetch(`http://localhost:5000/api/devoteeCheck/update-status/${id}`, {
+            const res = await fetch(`http://localhost:5000/api/devoteeCheck/update-amounts/${selectedBooking.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ verify_status: newStatus })
+                body: JSON.stringify(amounts)
             });
 
             if (res.ok) {
+                const responseData = await res.json();
+                setIsModalOpen(false);
                 fetchBookings();
-                fetchStats(); // Update counts when status changes
+                fetchStats(); // Update counts after save
+                
+                if(!responseData.data.Token_Prefix.substr(3).includes('A')) {
+                    generateReceipt(responseData.data);
+                }
             }
         } catch (error) {
-            console.error("Error updating status:", error);
+            console.error("Error updating booking:", error);
         }
     };
-    
+
+    const handlePanchamrutaSave = (booking) => {
+        setSelectedBooking(booking);
+        setAmounts({
+            donation: 0,
+            GD: 0,
+            BD: 0,
+            status: 1
+        });
+        handleSave();
+    };
+
+   const toggleSeva = async (id, sevaNumber, currentValue) => {
+    try {
+        await fetch(`http://localhost:5000/api/devoteeCheck/status/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                status: sevaNumber,      // 1 or 2
+                value: !currentValue     // toggle
+            })
+        });
+
+        fetchBookings(); // refresh after update
+
+    } catch (err) {
+        console.error(err);
+    }
+};;
 
 const formatDate=(date)=>{
 
@@ -391,9 +435,6 @@ ${data.donation > 0 ? `<div class="row"><span>Donation:</span> <span>₹${data.d
     printWindow.document.close();
 
 };
-
-
-
     const filteredBookings = bookings.filter((booking) => {
         const matchesSearch = 
             booking.Token_Prefix?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -404,13 +445,8 @@ ${data.donation > 0 ? `<div class="row"><span>Donation:</span> <span>₹${data.d
 
         let matchesFilter = true;
         if (filterType === 'PENDING') {
-            matchesFilter = booking.verify_status === 0 || !booking.verify_status;
-        } else if (filterType === 'TODAY') {
+           matchesFilter = booking.status_1 === false || booking.status_2 === false;       } else if (filterType === 'TODAY') {
             matchesFilter = bookingDate === todayStr;
-        }
-        else if(filterType === 'PENDING-SEVA'){
-                        matchesFilter = booking.status === 0 || !booking.status;
-
         }
 
         return matchesSearch && matchesFilter;
@@ -459,8 +495,8 @@ ${data.donation > 0 ? `<div class="row"><span>Donation:</span> <span>₹${data.d
                 >
                     <option value="ALL">All Bookings</option>
                     <option value="TODAY">Today's Bookings</option>
-                    <option value="PENDING">Payment Pending Status</option>
-                    <option value="PENDING-SEVA">Seva Pending Status</option>
+                    <option value="PENDING">Pending poojas</option>
+                    
                 </select>
             </div>
 
@@ -471,8 +507,7 @@ ${data.donation > 0 ? `<div class="row"><span>Donation:</span> <span>₹${data.d
                     <div className="booking-row header">
                         <div>Token</div>
                         <div>Devotee Details</div>
-                        <div>Payment Status</div>
-                        <div>Sevas</div>
+                        <div>Seva Status</div>
                         <div>Total</div>
                         <div>Action</div>
                     </div>
@@ -484,75 +519,100 @@ ${data.donation > 0 ? `<div class="row"><span>Donation:</span> <span>₹${data.d
                                 <strong>{booking.devotee_name}</strong><br />
                                 {booking.devotee_address}
                             </div>
-                             <div className="status-col">
-                                <div className="status-row">
-                                <label className="status-label">
-                                    <input 
-                                        type="radio" 
-                                        name={`status-${booking.id}`} 
-                                        checked={booking.verify_status === 1} 
-                                        onChange={() => handleStatusChange(booking.devotee_name,booking.id, 1)}
-                                    /> Verified
-                                </label>
-                                {booking.verify_status === 1 && (
-                                    <button
-                                        className="mini-receipt-btn"
-                                        onClick={() => generateReceipt(booking, currentTotal)}
-                                    >
-                                        Receipt
-                                    </button>
-                                )}
-                                </div>
-                                
-    
-                            </div>
+                            
                             
                             <div className="seva-col">
 
                                 {booking.seva_1 && (
-                                    <div className={`seva-item ${booking.status_2 ? "done" : ""}`}>
+                                    <div className={`seva-item ${booking.status_1 ? "done" : ""}`}>
+                                        <input
+                                            type="checkbox"
+                                            checked={booking.status_1 || false}
+                                            onChange={() => toggleSeva(booking.id, 1, booking.status_1)}
+                                        />
                                         <span>{booking.seva_1} - ₹{booking.seva_1_amount}</span>
                                     </div>
                                 )}
 
                                 {booking.seva_2 && (
                                     <div className={`seva-item ${booking.status_2 ? "done" : ""}`}>
+                                        <input
+                                            type="checkbox"
+                                            checked={booking.status_2 || false}
+                                            onChange={() => toggleSeva(booking.id, 2, booking.status_2)}
+                                        />
                                         <span>{booking.seva_2} - ₹{booking.seva_2_amount}</span>
                                     </div>
                                 )}
 
-    </div>
+</div>
                             <div className="total-col">₹ {booking.total_amount}</div>
                             
                            
 
-                           {
-                            (
-                                booking.Token_Prefix.substr(3).includes('B') &&
-                                booking.status_1 == 1 &&
-                                booking.status_2 == 1 &&
-                                booking.status == 1
-                            ) ||
-                            (
-                                !booking.Token_Prefix.substr(3).includes('B') && 
-                                booking.status==1
-                            )
-                            ? (
-                                <div className='delete-btn' style={{background:"#079110ff"}}>
-                                    Performed
-                                </div>
-                            )
-                            : null
-                        }
+                           { ((booking.status_1==true) || (booking.status_2==true)) &&(  <div className="action-col">
+                               {(booking.Token_Prefix.substr(3).includes('P') || booking.Token_Prefix.substr(3).includes('B')) && 
+                                <button className="delete-btn" style={{background:"#b71c1c"}} onClick={() => handleClearClick(booking)} >
+                                    More
+                                </button>}
 
+                                {(booking.Token_Prefix.substr(3).includes('A')) && 
+                                <button className="delete-btn" style={{background:"#079110ff"}} onClick={()=>handlePanchamrutaSave(booking)} >
+                                    Clear
+                                </button>}
 
+                            </div>)}
                         </div>
                     ))}
                 </div>
             )}
 
+            {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-container">
+                        <h3>Update Final Amounts</h3>
+                        <p className='token'>Token: {selectedBooking?.Token_Prefix}</p>
+                        
+                        <div className="modal-field">
+                            <label>Guru Dakshina</label>
+                            <input 
+                                type="number" 
+                                value={amounts.GD} 
+                                onChange={(e) => setAmounts({...amounts, GD: e.target.value})} 
+                            />
+                        </div>
+
+                        <div className="modal-field">
+                            <label>Vaidika Dakshina</label>
+                            <input 
+                                type="number" 
+                                value={amounts.BD} 
+                                onChange={(e) => setAmounts({...amounts, BD: e.target.value})} 
+                            />
+                        </div>
+
+                        <div className="modal-field">
+                            <label>Donation</label>
+                            <input 
+                                type="number" 
+                                value={amounts.donation} 
+                                onChange={(e) => setAmounts({...amounts, donation: e.target.value})} 
+                            />
+                        </div>
+
+                        <div className="total-amount" style={{ fontWeight: 'bold', margin: '15px 0', color: '#e65100' }}>
+                             Total: ₹ {currentTotal}
+                        </div>
+
+                        <div className="modal-buttons">
+                            <button className="save-btn" onClick={handleSave}>Save & Print</button>
+                            <button className="cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
 
-export default BookingDirectory;
+export default BookingDirectoryBhat;

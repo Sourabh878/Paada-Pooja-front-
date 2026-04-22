@@ -52,7 +52,7 @@ const DevoteeWelcome = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/devotee`, {
+            const res = await fetch('http://localhost:5000/api/devoteeCheck/devotee', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const DevoteeWelcome = () => {
         }
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/book-seva`, {
+            const response = await fetch('http://localhost:5000/api/devoteeCheck/book-seva', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -243,12 +243,53 @@ const DevoteeWelcome = () => {
                         </div>
 
                         <div className="devotee-details">
-                            <p><strong>Name:</strong> {DevoteeDetails.dev_name}</p>
-                            <p><strong>Address:</strong> {DevoteeDetails.dev_address}</p>
-                            <p><strong>Mobile:</strong> {DevoteeDetails.dev_mobile}</p>
+                           
+    <table className="devotee-table">
+        <tbody>
+            <tr>
+                <td className="label">Name</td>
+                <td className="separator">:</td>
+                <td className="value">{DevoteeDetails.dev_name}</td>
+            </tr>
+             <tr>
+                <td className="label">Address</td>
+                <td className="separator">:</td>
+                <td className="value">{DevoteeDetails.dev_address}</td>
+            </tr>
+            <tr>
+                <td className="label">Mobile</td>
+                <td className="separator">:</td>
+                <td className="value">{DevoteeDetails.dev_mobile}</td>
+            </tr>
+        </tbody>
+    </table>
+
+                        </div>
+                        
+                        <div>
+
+                        <div className="seva-grid">
+                            <div className="seva-grid-header">
+                                <span>Select</span>
+                                <span>Seva</span>
+                                <span>Amount (₹)</span>
+                            </div>
+
+                            {sevaList.map(seva => (
+                                <div key={seva.id} className="seva-grid-row">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedSevas.some(item => item.id === seva.id)}
+                                        onChange={() => handleSevaSelect(seva)}
+                                    />
+                                    <span>{seva.name}</span>
+                                    <span>₹ {seva.amount}</span>
+                                </div>
+                            ))}
+
                             {(BookingDetails.length>0) && (
                                 <div>
-                            <p><strong style={{color:"blue"}}>You Seva Tokens For the day ! </strong></p>
+                            <p><strong style={{color:"blue"}}>Your Seva Tokens For the day ! </strong></p>
                             <table className='token-table' style={{ width: "100%", borderCollapse: "collapse", marginTop: "10px" }}>
                                 <thead>
                                     <tr style={{ backgroundColor: "#f2f2f2", textAlign: "left" }}>
@@ -282,28 +323,6 @@ const DevoteeWelcome = () => {
                             </table>
                                 </div>
                             )}
-                        </div>
-                        
-                        <div>
-
-                        <div className="seva-grid">
-                            <div className="seva-grid-header">
-                                <span>Select</span>
-                                <span>Seva</span>
-                                <span>Amount (₹)</span>
-                            </div>
-
-                            {sevaList.map(seva => (
-                                <div key={seva.id} className="seva-grid-row">
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedSevas.some(item => item.id === seva.id)}
-                                        onChange={() => handleSevaSelect(seva)}
-                                    />
-                                    <span>{seva.name}</span>
-                                    <span>₹ {seva.amount}</span>
-                                </div>
-                            ))}
                         </div>
 
                         <div className="total-section">
@@ -340,10 +359,24 @@ const DevoteeWelcome = () => {
                             </button>
                         </div>
 
-                        <div className="devotee-details">
-                            <p><strong>Name:</strong> {DevoteeDetails.dev_name}</p>
-                            <p><strong>Mobile:</strong> {DevoteeDetails.dev_mobile}</p>
-                        </div>
+                        
+                                <div className="devotee-details">
+                                    <table className="devotee-table">
+                                        <tbody>
+                                            <tr>
+                                                <td className="label">Name</td>
+                                                <td className="separator">:</td>
+                                                <td className="value">{DevoteeDetails.dev_name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="label">Mobile</td>
+                                                <td className="separator">:</td>
+                                                <td className="value">{DevoteeDetails.dev_mobile}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                        
+                                
 
                         <div className="token-section" >
                             <h2>Your Token Number</h2>

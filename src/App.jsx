@@ -35,6 +35,7 @@ import DevoteeRegistration from './DevoteePages/DevoteeRegistration';
 import DevoteeWelcome from './DevoteePages/DevoteeWelcome';
 import PersonnelDashboard from './AdminPages/PersonnelDashboad';
 import BookingDirectory from './DevoteePages/BookingDirectory';
+import BookingDirectoryBhat from './DevoteePages/BookingDirectoryBhat';
 
 function App() {
   return (
@@ -314,6 +315,15 @@ function App() {
         element={
          
             <BookingDirectory/>
+         
+        }
+      />
+
+      <Route
+        path="/devotee/BhatBookList"
+        element={
+         
+            <BookingDirectoryBhat/>
          
         }
       />

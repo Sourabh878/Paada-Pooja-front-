@@ -131,6 +131,7 @@
     justify-content: center;
     z-index: 2000;
     padding: 20px;
+    
 }
 
 .verify-modal-content {
@@ -140,6 +141,8 @@
     border-radius: 24px;
     padding: 30px;
     animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-height:300px;
+    overflow:auto;
 }
 
 .modal-header-row {
@@ -236,6 +239,38 @@
     gap:10px;
 }
 
+.token-table{
+    max-height: 10px;
+    overflow: auto;
+}
+
+
+.devotee-table {
+    border-collapse: collapse;
+    width: auto;
+}
+
+.devotee-table td {
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+.label {
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.separator {
+    width: 10px;
+    text-align: center;
+}
+
+.value {
+    text-align: left;
+    font-weight: 500;
+}
+
 @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
@@ -243,4 +278,8 @@
 @media (max-width: 380px) {
     .welcome-hero h1 { font-size: 1.5rem; }
     .nav-card-inner { flex-direction: column; text-align: center; }
+    .verify-modal-content{
+        max-height:'500px';
+        overflow: auto;
+    }
 }

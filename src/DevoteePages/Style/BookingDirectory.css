@@ -415,9 +415,10 @@ input[type=number] {
     }
 
     .delete-btn {
-        width: 100%;
+        width: auto;
         padding: 10px;
         font-size: 14px;
+
     }
 
     .mini-receipt-btn {
@@ -434,7 +435,7 @@ input[type=number] {
 
     .search-input,
     .filter-select {
-        width: 100%;
+        width: auto;
     }
 
     /* Stats stack */
@@ -447,11 +448,24 @@ input[type=number] {
         width: 30%;
         
     }
-}
 
-  .booking-row.header {
+    .booking-row.header {
         display: none;
     }
+
+    .modal-container{
+        width:auto;
+        max-height: 400px;
+        overflow: auto;
+    }
+    .modal-overlay{
+        width:auto;
+        padding:10px;
+
+    }
+}
+
+  
 
 @media (max-width: 768px) {
     .token-col::before { content: "Token: "; font-weight: bold; }
