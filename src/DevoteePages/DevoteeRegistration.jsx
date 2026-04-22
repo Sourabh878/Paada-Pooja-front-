@@ -214,7 +214,7 @@ const DevoteeRegistration = () => {
               </div>
 
               {/* Address */}
-              {/* <div className="input-group full-width">
+              { <div className="input-group full-width">
                                 <label><FaMapMarkerAlt /> Address *</label>
                                 <textarea 
                                     name="address" 
@@ -224,7 +224,7 @@ const DevoteeRegistration = () => {
                                     rows="2"
                                     placeholder="House No, Street, Landmark"
                                 />
-                            </div> */}
+                            </div> }
 
               <div className="input-group">
                 <label>
