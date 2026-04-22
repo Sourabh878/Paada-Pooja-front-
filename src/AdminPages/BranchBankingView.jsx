@@ -35,7 +35,7 @@ const BranchBankingView = () => {
   const fetchAccounts = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/BankDetails`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/BankDetails`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
       if (res.ok) setAccounts(await res.json());
@@ -47,7 +47,7 @@ const BranchBankingView = () => {
 
   const fetchBranches = async () => {
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/TempleBranches/all`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
       if (res.ok) setBranches(await res.json());
@@ -81,7 +81,7 @@ const BranchBankingView = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/BankDetails/${editingData.account_id}`,
+        `${import.meta.env.VITE_API_URL}/api/BankDetails/${editingData.account_id}`,
         {
           method: "PUT",
           headers: {
@@ -104,7 +104,7 @@ const BranchBankingView = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this record?")) return;
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/BankDetails/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/BankDetails/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${getToken()}` },
       });

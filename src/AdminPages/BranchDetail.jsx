@@ -34,7 +34,7 @@ const BranchDetail = () => {
   const fetchBranchDetails = async () => {
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/TempleBranches/${branchId}`,
+        `${import.meta.env.VITE_API_URL}/api/TempleBranches/${branchId}`,
         {
           headers: { Authorization: `Bearer ${getToken()}` },
         },
@@ -68,7 +68,7 @@ const BranchDetail = () => {
     if (!window.confirm(`Delete this branch photo permanently?`)) return;
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/TempleBranches/images/${photoId}`,
+        `${import.meta.env.VITE_API_URL}/api/TempleBranches/images/${photoId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${getToken()}` },
@@ -98,7 +98,7 @@ const BranchDetail = () => {
         imageFormData.append("images", file);
 
         await fetch(
-          `${import.meta.env.base_url}/api/TempleBranches/addImage/${branchId}`,
+          `${import.meta.env.VITE_API_URL}/api/TempleBranches/addImage/${branchId}`,
           {
             method: "POST",
             headers: { Authorization: `Bearer ${getToken()}` },
@@ -117,7 +117,7 @@ const BranchDetail = () => {
   const handleUpdate = async () => {
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/TempleBranches/${branchId}`,
+        `${import.meta.env.VITE_API_URL}/api/TempleBranches/${branchId}`,
         {
           method: "PUT",
           headers: {

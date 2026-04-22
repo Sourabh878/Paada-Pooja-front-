@@ -34,7 +34,7 @@ const BranchBankingForm = () => {
 
   const fetchBranches = async () => {
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/TempleBranches/all`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
       if (res.ok) setBranches(await res.json());
@@ -47,7 +47,7 @@ const BranchBankingForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/BankDetails`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/BankDetails`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -99,7 +99,7 @@ const DevoteeRegistration = () => {
 
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/devotees/check?search=${encodeURIComponent(value)}`,
+        `${import.meta.env.VITE_API_URL}/api/devotees/check?search=${encodeURIComponent(value)}`,
         {
           headers: { Authorization: `Bearer ${getToken()}` },
         },
@@ -121,7 +121,7 @@ const DevoteeRegistration = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/devotees/`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devotees/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

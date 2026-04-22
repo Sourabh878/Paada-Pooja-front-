@@ -18,7 +18,7 @@ const PriestDirectory = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const API_BASE = `${import.meta.env.base_url}/api`;
+  const API_BASE = `${import.meta.env.VITE_API_URL}/api`;
 
   useEffect(() => {
     fetchPriests();

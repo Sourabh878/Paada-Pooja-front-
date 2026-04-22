@@ -23,7 +23,7 @@ const BranchDirectory = () => {
 
   const fetchBranches = async () => {
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/TempleBranches/all`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
 

@@ -44,9 +44,9 @@ const ProjectDirectory = () => {
     const headers = { Authorization: `Bearer ${getToken()}` };
     try {
       const [projRes, ledRes, brRes] = await Promise.all([
-        fetch(`${import.meta.env.base_url}/api/projects/all`, { headers }),
-        fetch(`${import.meta.env.base_url}/api/locations`, { headers }),
-        fetch(`${import.meta.env.base_url}/api/TempleBranches/all`, { headers }),
+        fetch(`${import.meta.env.VITE_API_URL}/api/projects/all`, { headers }),
+        fetch(`${import.meta.env.VITE_API_URL}/api/locations`, { headers }),
+        fetch(`${import.meta.env.VITE_API_URL}/api/TempleBranches/all`, { headers }),
       ]);
       if (projRes.ok) setProjects(await projRes.json());
       if (ledRes.ok) setLedgers(await ledRes.json());
@@ -67,7 +67,7 @@ const ProjectDirectory = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/projects/${editData.project_id}`,
+        `${import.meta.env.VITE_API_URL}/api/projects/${editData.project_id}`,
         {
           method: "PUT",
           headers: {
@@ -93,7 +93,7 @@ const ProjectDirectory = () => {
       return;
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/projects/${projectId}`,
+        `${import.meta.env.VITE_API_URL}/api/projects/${projectId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${getToken()}` },

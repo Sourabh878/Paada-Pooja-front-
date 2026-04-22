@@ -19,7 +19,7 @@ const BookingDirectory = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/devoteeCheck`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck`);
       const data = await res.json();
       setBookings(data);
     } catch (error) {
@@ -30,7 +30,7 @@ const BookingDirectory = () => {
   // New function to fetch seva counts
   const fetchStats = async () => {
     try {
-      const res = await fetch(`${import.meta.env.base_url}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
       const json = await res.json();
       if (json.success) {
         setStats(json.data);
@@ -59,7 +59,7 @@ const BookingDirectory = () => {
   const handleStatusChange = async (id, newStatus) => {
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/devoteeCheck/update-status/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-status/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -79,7 +79,7 @@ const BookingDirectory = () => {
   const handleSave = async () => {
     try {
       const res = await fetch(
-        `${import.meta.env.base_url}/api/devoteeCheck/update-amounts/${selectedBooking.id}`,
+        `${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-amounts/${selectedBooking.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

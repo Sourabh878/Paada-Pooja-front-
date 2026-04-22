@@ -69,7 +69,7 @@ const AssetManagement = () => {
   };
 
   const FetchpropCat = async () => {
-    const propcat = await fetch(`${import.meta.env.base_url}/api/properties/pcat`, {
+    const propcat = await fetch(`${import.meta.env.VITE_API_URL}/api/properties/pcat`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${getToken()}`,
@@ -154,7 +154,7 @@ const AssetManagement = () => {
         );
       });
 
-      const res = await fetch(`${import.meta.env.base_url}/api/assets`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/assets`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${getToken()}`,

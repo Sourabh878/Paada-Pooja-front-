@@ -34,7 +34,7 @@ const BookProperty = () => {
   const [assetSearch, setAssetSearch] = useState("");
   const [receipt, setReceipt] = useState(null);
 
-  const API_BASE = `${import.meta.env.base_url}/api`;
+  const API_BASE = `${import.meta.env.VITE_API_URL}/api`;
   const today = new Date().toISOString().split("T")[0];
 
   const formatCurrency = (num) => parseFloat(num).toFixed(2);
