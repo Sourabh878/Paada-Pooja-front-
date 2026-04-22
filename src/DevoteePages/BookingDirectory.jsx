@@ -19,7 +19,7 @@ const BookingDirectory = () => {
 
     const fetchBookings = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/devoteeCheck');
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck`);
             const data = await res.json();
             setBookings(data);
         } catch (error) {
@@ -30,7 +30,7 @@ const BookingDirectory = () => {
     // New function to fetch seva counts
     const fetchStats = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/devoteeCheck/counts'); // Update with your actual count API endpoint
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
             const json = await res.json();
             if (json.success) {
                 setStats(json.data);
@@ -58,7 +58,7 @@ const BookingDirectory = () => {
 
     const handleStatusChange = async (id, newStatus) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/devoteeCheck/update-status/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-status/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ verify_status: newStatus })
@@ -75,7 +75,7 @@ const BookingDirectory = () => {
 
     const handleSave = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/devoteeCheck/update-amounts/${selectedBooking.id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-amounts/${selectedBooking.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(amounts)
@@ -109,7 +109,8 @@ const BookingDirectory = () => {
 
    const toggleSeva = async (id, sevaNumber, currentValue) => {
     try {
-        await fetch(`http://localhost:5000/api/devoteeCheck/status/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}
+            /api/devoteeCheck/status/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
