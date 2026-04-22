@@ -1,120 +1,146 @@
-import React, { useEffect, useState } from "react";
-import "./Style/BookingDirectory.css";
+import React, { useEffect, useState } from 'react';
+import './Style/BookingDirectory.css';
 
 const BookingDirectory = () => {
-  const [bookings, setBookings] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedBooking, setSelectedBooking] = useState(null);
-  const [stats, setStats] = useState(null); // State for the count bar
-  const [amounts, setAmounts] = useState({
-    donation: "",
-    GD: "",
-    BD: "",
-    status: "",
-  });
-
-  // New Filter and Search States
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterType, setFilterType] = useState("ALL");
-
-  const fetchBookings = async () => {
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck`);
-      const data = await res.json();
-      setBookings(data);
-    } catch (error) {
-      console.error("Error fetching bookings:", error);
-    }
-  };
-
-  // New function to fetch seva counts
-  const fetchStats = async () => {
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/counts`); // Update with your actual count API endpoint
-      const json = await res.json();
-      if (json.success) {
-        setStats(json.data);
-      }
-    } catch (error) {
-      console.error("Error fetching stats:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchBookings();
-    fetchStats();
-  }, []);
-
-  const handleClearClick = (booking) => {
-    setSelectedBooking(booking);
-    setAmounts({
-      donation: booking.donation || 0,
-      GD: booking.GD || 0,
-      BD: booking.BD || 0,
-      status: 1,
+    const [bookings, setBookings] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState(null);
+    const [stats, setStats] = useState(null); // State for the count bar
+    const [amounts, setAmounts] = useState({
+        donation: '',
+        GD: '',
+        BD: '',
+        status: ''
     });
-    setIsModalOpen(true);
-  };
 
-  const handleStatusChange = async (id, newStatus) => {
-    try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-status/${id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ verify_status: newStatus }),
-        },
-      );
+    // New Filter and Search States
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filterType, setFilterType] = useState('ALL');
 
-      if (res.ok) {
-        fetchBookings();
-        fetchStats(); // Update counts when status changes
-      }
-    } catch (error) {
-      console.error("Error updating status:", error);
-    }
-  };
-
-  const handleSave = async () => {
-    try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/devoteeCheck/update-amounts/${selectedBooking.id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(amounts),
-        },
-      );
-
-      if (res.ok) {
-        const responseData = await res.json();
-        setIsModalOpen(false);
-        fetchBookings();
-        fetchStats(); // Update counts after save
-
-        if (!responseData.data.Token_Prefix.includes("A")) {
-          generateReceipt(responseData.data);
+    const fetchBookings = async () => {
+        try {
+            const res = await fetch('http://localhost:5000/api/devoteeCheck');
+            const data = await res.json();
+            setBookings(data);
+        } catch (error) {
+            console.error("Error fetching bookings:", error);
         }
-      }
-    } catch (error) {
-      console.error("Error updating booking:", error);
+    };
+
+    // New function to fetch seva counts
+    const fetchStats = async () => {
+        try {
+            const res = await fetch('http://localhost:5000/api/devoteeCheck/counts'); // Update with your actual count API endpoint
+            const json = await res.json();
+            if (json.success) {
+                setStats(json.data);
+            }
+        } catch (error) {
+            console.error("Error fetching stats:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchBookings();
+        fetchStats();
+    }, []);
+
+    const handleClearClick = (booking) => {
+        setSelectedBooking(booking);
+        setAmounts({
+            donation: booking.donation || 0,
+            GD: booking.GD || 0,
+            BD: booking.BD || 0,
+            status: 1
+        });
+        setIsModalOpen(true);
+    };
+
+    const handleStatusChange = async (id, newStatus) => {
+        try {
+            const res = await fetch(`http://localhost:5000/api/devoteeCheck/update-status/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ verify_status: newStatus })
+            });
+
+            if (res.ok) {
+                fetchBookings();
+                fetchStats(); // Update counts when status changes
+            }
+        } catch (error) {
+            console.error("Error updating status:", error);
+        }
+    };
+
+    const handleSave = async () => {
+        try {
+            const res = await fetch(`http://localhost:5000/api/devoteeCheck/update-amounts/${selectedBooking.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(amounts)
+            });
+
+            if (res.ok) {
+                const responseData = await res.json();
+                setIsModalOpen(false);
+                fetchBookings();
+                fetchStats(); // Update counts after save
+                
+                if(!responseData.data.Token_Prefix.substr(3).includes('A')) {
+                    generateReceipt(responseData.data);
+                }
+            }
+        } catch (error) {
+            console.error("Error updating booking:", error);
+        }
+    };
+
+    const handlePanchamrutaSave = (booking) => {
+        setSelectedBooking(booking);
+        setAmounts({
+            donation: 0,
+            GD: 0,
+            BD: 0,
+            status: 1
+        });
+        handleSave();
+    };
+
+   const toggleSeva = async (id, sevaNumber, currentValue) => {
+    try {
+        await fetch(`http://localhost:5000/api/devoteeCheck/status/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                status: sevaNumber,      // 1 or 2
+                value: !currentValue     // toggle
+            })
+        });
+
+        fetchBookings(); // refresh after update
+
+    } catch (err) {
+        console.error(err);
     }
-  };
+};;
 
-  const handlePanchamrutaSave = (booking) => {
-    setSelectedBooking(booking);
-    setAmounts({
-      donation: 0,
-      GD: 0,
-      BD: 0,
-      status: 1,
-    });
-    handleSave();
-  };
+const formatDate=(date)=>{
 
-  const generateReceipt = (data) => {
-    const printWindow = window.open("", "_blank");
+const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+  day: '2-digit',
+  month: '2-digit',
+  year: '2-digit'
+});
+
+return formattedDate;
+}
+
+const generateReceipt = (data, total) => {
+
+    const printWindow = window.open('', '_blank');
 
     printWindow.document.write(`
 
@@ -353,8 +379,7 @@ const BookingDirectory = () => {
                        
 
                         <div class="token-header">${data.Token_Prefix}</div>
-
-                       
+                        
 
                         <div class="details">
 
@@ -362,20 +387,23 @@ const BookingDirectory = () => {
 
                             <div class="row"><span>Mobile:</span> <span>+91 ${data.devotee_mobile}</span></div>
 
+                            <div class="row"><span>Seva Date:</span> <span>${formatDate(data.seva_date)}</span></div>
+
                            
 
                             <div class="seva-section">
 
-                                ${data.seva_1 ? `<div class="row"><span>${data.seva_1}</span> <span>₹${data.seva_1_amount}</span></div>` : ""}
+                                ${ data.GD==0 &&data.seva_1 ? `<div class="row"><span>${data.seva_1}</span> <span>₹${data.seva_1_amount}</span></div>` : ''}
 
-                                ${data.seva_2 ? `<div class="row"><span>${data.seva_2}</span> <span>₹${data.seva_2_amount}</span></div>` : ""}
+                                ${data.GD==0 && data.seva_2 ? `<div class="row"><span>${data.seva_2}</span> <span>₹${data.seva_2_amount}</span></div>` : 
+                                ''}
+                                ${data.GD > 0 ? `<div class="row"><span>Guru Dakshina:</span> <span>₹${data.GD}</span></div>` : ''}
+
+${data.BD > 0 ? `<div class="row"><span>Vaidic Dakshina:</span> <span>₹${data.BD}</span></div>` : ''}
+
+${data.donation > 0 ? `<div class="row"><span>Donation:</span> <span>₹${data.donation}</span></div>` : ''}
 
 
-                                <div class="row"><span>Guru Dakshina:</span> <span>₹${data.GD || 0}</span></div>
-
-                                <div class="row"><span>Vaidic Dakshina:</span> <span>₹${data.BD || 0}</span></div>
-                                
-                                <div class="row"><span>Donation:</span> <span>₹${data.donation || 0}</span></div>
 
                             </div>
 
@@ -383,9 +411,9 @@ const BookingDirectory = () => {
 
                             <div class="total-row">
 
-                                <span class="total-label">GRAND TOTAL</span>
+                                <span class="total-label">TOTAL AMOUNT </span>
 
-                                <span class="total-amount">₹${data.total_amount}</span>
+                                <span class="total-amount">₹${total?total:data.total_amount}</span>
 
                             </div>
 
@@ -420,229 +448,219 @@ const BookingDirectory = () => {
     `);
 
     printWindow.document.close();
-  };
 
-  const filteredBookings = bookings.filter((booking) => {
-    const matchesSearch =
-      booking.Token_Prefix?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      booking.devotee_mobile?.includes(searchTerm);
+};
 
-    const bookingDate = new Date(booking.seva_date).toLocaleDateString("en-CA");
-    const todayStr = new Date().toLocaleDateString("en-CA");
 
-    let matchesFilter = true;
-    if (filterType === "PENDING") {
-      matchesFilter = booking.verify_status === 0 || !booking.verify_status;
-    } else if (filterType === "TODAY") {
-      matchesFilter = bookingDate === todayStr;
-    }
 
-    return matchesSearch && matchesFilter;
-  });
+    const filteredBookings = bookings.filter((booking) => {
+        const matchesSearch = 
+            booking.Token_Prefix?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            booking.devotee_mobile?.includes(searchTerm);
 
-  const currentTotal =
-    Number(amounts.BD || 0) +
-    Number(amounts.GD || 0) +
-    Number(amounts.donation || 0);
+        const bookingDate = new Date(booking.seva_date).toLocaleDateString('en-CA');
+        const todayStr = new Date().toLocaleDateString('en-CA');
 
-  return (
-    <div className="booking-page">
-      <h2 className="booking-title">🛕 Seva Booking Directory</h2>
+        let matchesFilter = true;
+        if (filterType === 'PENDING') {
+            matchesFilter = booking.verify_status === 0 || !booking.verify_status;
+        } else if (filterType === 'TODAY') {
+            matchesFilter = bookingDate === todayStr;
+        }
 
-      {/* --- Count Bar (Stats Component) --- */}
-      {stats && (
-        <div className="stats-container">
-          <div className="stat-card">
-            <h4>Total Sevas</h4>
-            <p className="stat-numbers">
-              {stats.Finished_Sevas} / {stats.Total_Sevas}
-            </p>
-            <small>Finished / Total</small>
-          </div>
-          <div className="stat-card">
-            <h4>Paadha Pooja</h4>
-            <p className="stat-numbers">
-              {stats.Paadha_Pooja.Finished} / {stats.Paadha_Pooja.Total}
-            </p>
-            <small>Finished / Total</small>
-          </div>
-          <div className="stat-card">
-            <h4>Panchamruta</h4>
-            <p className="stat-numbers">
-              {stats.Panchamruta.Finished} / {stats.Panchamruta.Total}
-            </p>
-            <small>Finished / Total</small>
-          </div>
+        return matchesSearch && matchesFilter;
+    });
+
+    const currentTotal = Number(amounts.BD || 0) + Number(amounts.GD || 0) + Number(amounts.donation || 0);
+
+    return (
+        <div className="booking-page">
+            <h2 className="booking-title">🛕 Seva Booking Directory</h2>
+
+            {/* --- Count Bar (Stats Component) --- */}
+            {stats && (
+                <div className="stats-container">
+                    <div className="stat-card">
+                        <h4>Total Sevas</h4>
+                        <p className="stat-numbers">{stats.Finished_Sevas} / {stats.Total_Sevas}</p>
+                        <small>Finished / Total</small>
+                    </div>
+                    <div className="stat-card">
+                        <h4>Paadha Pooja</h4>
+                        <p className="stat-numbers">{stats.Paadha_Pooja.Finished} / {stats.Paadha_Pooja.Total}</p>
+                        <small>Finished / Total</small>
+                    </div>
+                    <div className="stat-card">
+                        <h4>Panchamruta</h4>
+                        <p className="stat-numbers">{stats.Panchamruta.Finished} / {stats.Panchamruta.Total}</p>
+                        <small>Finished / Total</small>
+                    </div>
+                </div>
+            )}
+
+            {/* --- Search and Filter Bar --- */}
+            <div className="directory-controls">
+                <input 
+                    type="text" 
+                    className="search-input"
+                    placeholder="Search Token or Mobile..." 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <select 
+                    className="filter-select"
+                    value={filterType}
+                    onChange={(e) => setFilterType(e.target.value)}
+                >
+                    <option value="ALL">All Bookings</option>
+                    <option value="TODAY">Today's Bookings</option>
+                    <option value="PENDING">Pending Status</option>
+                </select>
+            </div>
+
+            {filteredBookings.length === 0 ? (
+                <p className="no-data">No bookings match your criteria</p>
+            ) : (
+                <div className="booking-table">
+                    <div className="booking-row header">
+                        <div>Token</div>
+                        <div>Devotee Details</div>
+                        <div>Payment Status</div>
+                        <div>Sevas</div>
+                        <div>Total</div>
+                        <div>Action</div>
+                    </div>
+
+                    {filteredBookings.map((booking) => (
+                        <div key={booking.id} className="booking-row">
+                            <div className="token-col">{booking.Token_Prefix}</div>
+                            <div className="devotee-col">
+                                <strong>{booking.devotee_name}</strong><br />
+                                {booking.devotee_address}
+                            </div>
+                             <div className="status-col">
+                                <div className="status-row">
+                                <label className="status-label">
+                                    <input 
+                                        type="radio" 
+                                        name={`status-${booking.id}`} 
+                                        checked={booking.verify_status === 1} 
+                                        onChange={() => handleStatusChange(booking.id, 1)}
+                                    /> Verified
+                                </label>
+                                {booking.verify_status === 1 && (
+                                    <button
+                                        className="mini-receipt-btn"
+                                        onClick={() => generateReceipt(booking, currentTotal)}
+                                    >
+                                        Receipt
+                                    </button>
+                                )}
+                                </div>
+                                <br />
+                                <label className="status-label">
+                                    <input 
+                                        type="radio" 
+                                        name={`status-${booking.id}`} 
+                                        checked={booking.verify_status === 0 || !booking.verify_status} 
+                                        onChange={() => handleStatusChange(booking.id, 0)}
+                                    /> Pending
+                                </label>
+                               
+                            </div>
+                            
+                            <div className="seva-col">
+
+                                {booking.seva_1 && (
+                                    <div className={`seva-item ${booking.status_1 ? "done" : ""}`}>
+                                        <input
+                                            type="checkbox"
+                                            checked={booking.status_1 || false}
+                                            onChange={() => toggleSeva(booking.id, 1, booking.status_1)}
+                                        />
+                                        <span>{booking.seva_1} - ₹{booking.seva_1_amount}</span>
+                                    </div>
+                                )}
+
+                                {booking.seva_2 && (
+                                    <div className={`seva-item ${booking.status_2 ? "done" : ""}`}>
+                                        <input
+                                            type="checkbox"
+                                            checked={booking.status_2 || false}
+                                            onChange={() => toggleSeva(booking.id, 2, booking.status_2)}
+                                        />
+                                        <span>{booking.seva_2} - ₹{booking.seva_2_amount}</span>
+                                    </div>
+                                )}
+
+</div>
+                            <div className="total-col">₹ {booking.total_amount}</div>
+                            
+                           
+
+                           {(booking.verify_status==1) &&  (  <div className="action-col">
+                               {(booking.Token_Prefix.substr(3).includes('P') || booking.Token_Prefix.substr(3).includes('B')) && 
+                                <button className="delete-btn" style={{background:"#b71c1c"}} onClick={() => handleClearClick(booking)} >
+                                    More
+                                </button>}
+
+                                {(booking.Token_Prefix.substr(3).includes('A')) && 
+                                <button className="delete-btn" style={{background:"#079110ff"}} onClick={()=>handlePanchamrutaSave(booking)} >
+                                    Clear
+                                </button>}
+
+                            </div>)}
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-container">
+                        <h3>Update Final Amounts</h3>
+                        <p className='token'>Token: {selectedBooking?.Token_Prefix}</p>
+                        
+                        <div className="modal-field">
+                            <label>Guru Dakshina</label>
+                            <input 
+                                type="number" 
+                                value={amounts.GD} 
+                                onChange={(e) => setAmounts({...amounts, GD: e.target.value})} 
+                            />
+                        </div>
+
+                        <div className="modal-field">
+                            <label>Vaidika Dakshina</label>
+                            <input 
+                                type="number" 
+                                value={amounts.BD} 
+                                onChange={(e) => setAmounts({...amounts, BD: e.target.value})} 
+                            />
+                        </div>
+
+                        <div className="modal-field">
+                            <label>Donation</label>
+                            <input 
+                                type="number" 
+                                value={amounts.donation} 
+                                onChange={(e) => setAmounts({...amounts, donation: e.target.value})} 
+                            />
+                        </div>
+
+                        <div className="total-amount" style={{ fontWeight: 'bold', margin: '15px 0', color: '#e65100' }}>
+                             Total: ₹ {currentTotal}
+                        </div>
+
+                        <div className="modal-buttons">
+                            <button className="save-btn" onClick={handleSave}>Save & Print</button>
+                            <button className="cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
-      )}
-
-      {/* --- Search and Filter Bar --- */}
-      <div className="directory-controls">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search Token or Mobile..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <select
-          className="filter-select"
-          value={filterType}
-          onChange={(e) => setFilterType(e.target.value)}
-        >
-          <option value="ALL">All Bookings</option>
-          <option value="TODAY">Today's Bookings</option>
-          <option value="PENDING">Pending Status</option>
-        </select>
-      </div>
-
-      {filteredBookings.length === 0 ? (
-        <p className="no-data">No bookings match your criteria</p>
-      ) : (
-        <div className="booking-table">
-          <div className="booking-row header">
-            <div>Token</div>
-            <div>Devotee Details</div>
-            <div>Sevas</div>
-            <div>Total</div>
-            <div>Status</div>
-            <div>Action</div>
-          </div>
-
-          {filteredBookings.map((booking) => (
-            <div key={booking.id} className="booking-row">
-              <div className="token-col">{booking.Token_Prefix}</div>
-              <div className="devotee-col">
-                <strong>{booking.devotee_name}</strong>
-                <br />
-                {booking.devotee_address}
-              </div>
-              <div className="seva-col">
-                {booking.seva_1 && (
-                  <div>
-                    {booking.seva_1} - ₹{booking.seva_1_amount}
-                  </div>
-                )}
-                {booking.seva_2 && (
-                  <div>
-                    {booking.seva_2} - ₹{booking.seva_2_amount}
-                  </div>
-                )}
-              </div>
-              <div className="total-col">₹ {booking.total_amount}</div>
-
-              <div className="status-col">
-                <label className="status-label">
-                  <input
-                    type="radio"
-                    name={`status-${booking.id}`}
-                    checked={booking.verify_status === 1}
-                    onChange={() => handleStatusChange(booking.id, 1)}
-                  />{" "}
-                  Verified
-                </label>
-                <br />
-                <label className="status-label">
-                  <input
-                    type="radio"
-                    name={`status-${booking.id}`}
-                    checked={
-                      booking.verify_status === 0 || !booking.verify_status
-                    }
-                    onChange={() => handleStatusChange(booking.id, 0)}
-                  />{" "}
-                  Pending
-                </label>
-              </div>
-
-              <div className="action-col">
-                {(booking.Token_Prefix.includes("P") ||
-                  booking.Token_Prefix.includes("B")) && (
-                  <button
-                    className="delete-btn"
-                    style={{ background: "#b71c1c" }}
-                    onClick={() => handleClearClick(booking)}
-                  >
-                    More
-                  </button>
-                )}
-
-                {booking.Token_Prefix.includes("A") && (
-                  <button
-                    className="delete-btn"
-                    style={{ background: "#079110ff" }}
-                    onClick={() => handlePanchamrutaSave(booking)}
-                  >
-                    Clear
-                  </button>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-container">
-            <h3>Update Final Amounts</h3>
-            <p>Token: {selectedBooking?.Token_Prefix}</p>
-
-            <div className="modal-field">
-              <label>Guru Dakshina (GD)</label>
-              <input
-                type="number"
-                value={amounts.GD}
-                onChange={(e) => setAmounts({ ...amounts, GD: e.target.value })}
-              />
-            </div>
-
-            <div className="modal-field">
-              <label>Vaidic Dakshina (BD)</label>
-              <input
-                type="number"
-                value={amounts.BD}
-                onChange={(e) => setAmounts({ ...amounts, BD: e.target.value })}
-              />
-            </div>
-
-            <div className="modal-field">
-              <label>Donation</label>
-              <input
-                type="number"
-                value={amounts.donation}
-                onChange={(e) =>
-                  setAmounts({ ...amounts, donation: e.target.value })
-                }
-              />
-            </div>
-
-            <div
-              className="total-amount"
-              style={{ fontWeight: "bold", margin: "15px 0", color: "#e65100" }}
-            >
-              Expected Grand Total: ₹ {currentTotal}
-            </div>
-
-            <div className="modal-buttons">
-              <button className="save-btn" onClick={handleSave}>
-                Save & Print
-              </button>
-              <button
-                className="cancel-btn"
-                onClick={() => setIsModalOpen(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default BookingDirectory;
-
-
-
