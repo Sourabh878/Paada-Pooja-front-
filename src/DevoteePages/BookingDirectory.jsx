@@ -109,8 +109,7 @@ const BookingDirectory = () => {
 
    const toggleSeva = async (id, sevaNumber, currentValue) => {
     try {
-        await fetch(`${import.meta.env.VITE_API_URL}
-            /api/devoteeCheck/status/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/devoteeCheck/status/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
